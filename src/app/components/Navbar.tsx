@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`min-h-screen transition-all duration-700 ${themeClasses.bg}`}
+      className={`transition-all duration-700 ${themeClasses.bg}`}
     >
       <nav className="relative">
         {/* Glassmorphism backdrop */}
@@ -46,7 +46,7 @@ const Navbar = () => {
             {/* Logo with glow effect */}
             <div className="relative">
               <h1
-                className={`text-6xl font-bold bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl ${themeClasses.glow} transition-all duration-500`}
+                className={`text-5xl font-bold bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl ${themeClasses.glow} transition-all duration-500`}
               >
                 Sudarshan.io
               </h1>
