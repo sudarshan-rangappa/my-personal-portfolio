@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Shield, Mail, Download, Search, User } from "lucide-react";
-import Image from "next/image";
 
 interface HeroSectionProps {
 	selectedTheme?: string;
@@ -215,7 +214,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 								Rangappa
 							</span>
 						</h1>
-
 						{/* Animated subtitle */}
 						<h2 className="text-2xl lg:text-3xl font-semibold text-white/90 mb-6 h-12 flex items-center justify-center lg:justify-start">
 							<span className={theme.accent}>
