@@ -1,13 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Shield, Mail, Download, Search, User } from "lucide-react";
+import { useTheme } from "@/app/hooks/useTheme";
 import DecryptedText from "../DecryptedText";
 
-interface HeroSectionProps {
-	selectedTheme?: string;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => {
+const HeroSection = () => {
+	const { theme } = useTheme(); // Use global theme instead of prop
 	const [typedText, setTypedText] = useState("");
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -18,29 +16,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 		"Threat Hunter",
 		"SOC Analyst"
 	];
-
-	const getThemeClasses = () => {
-		switch (selectedTheme) {
-			case "red":
-				return {
-					accent: "text-red-400",
-					accentBg: "bg-red-500",
-					button: "bg-red-600 hover:bg-red-700",
-					outline: "border-red-400 text-red-400 hover:bg-red-400",
-					gradient: "from-red-500/20 to-red-600/20"
-				};
-			default:
-				return {
-					accent: "text-blue-400",
-					accentBg: "bg-blue-500",
-					button: "bg-blue-600 hover:bg-blue-700",
-					outline: "border-blue-400 text-blue-400 hover:bg-blue-400",
-					gradient: "from-blue-500/20 to-blue-600/20"
-				};
-		}
-	};
-
-	const theme = getThemeClasses();
 
 	// Terminal log lines data
 	const logLines = [
@@ -82,7 +57,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 		if (logText.includes('[ALERT]') || logText.includes('[WARN]')) {
 			return "#ef4444"; // red-500
 		}
-		return theme.logColor; // blue or red based on theme
+		return getComputedStyle(document.documentElement).getPropertyValue('--theme-accent').trim() || "#60a5fa";
 	};
 
 	// Function to create animated log lines
@@ -122,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 		createLogLines();
 		const interval = setInterval(createLogLines, 20000);
 		return () => clearInterval(interval);
-	}, [selectedTheme]);
+	}, [theme]); // Updated to use theme instead of selectedTheme
 
 	// Typing animation effect
 	useEffect(() => {
@@ -204,41 +179,39 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 					{/* Hero Text Content */}
 					<div className="flex-1 text-center lg:text-left max-w-2xl">
 						{/* Terminal-style greeting */}
-						<div className={`inline-block font-mono text-sm ${theme.accent} bg-black/40 px-4 py-2 rounded-lg mb-6 backdrop-blur-sm border border-white/10`}>
+						<div
+							className="inline-block font-mono text-sm bg-black/40 px-4 py-2 rounded-lg mb-6 backdrop-blur-sm border border-white/10"
+							style={{ color: 'var(--theme-accent)' }}
+						>
 							<span className="text-white/70">$</span> whoami
 						</div>
 
 						{/* Main title */}
-						{/* <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-							Sudarshan
-							<span className={`block ${theme.accent} text-4xl lg:text-6xl mt-2`}>
-								Rangappa
-							</span>
-						</h1> */}
-            <div>
-                <DecryptedText
-                className={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
-                parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
-                text={"Sudarshan"}
-                speed={200}
-                sequential={"true"}
-                animateOn={"view"}
-                />
-            </div>
-            <div>
-                <DecryptedText
-                className={`${theme.accent} text-4xl lg:text-6xl leading-[1.2]`}
-                parentClassName={`${theme.accent} text-4xl lg:text-6xl leading-[1.2]`}
-                text={"Rangappa"}
-                speed={200}
-                sequential={"true"}
-                animateOn={"view"}
-                />
-            </div>
-            
+						<div>
+							<DecryptedText
+								className={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
+								parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
+								text={"Sudarshan"}
+								speed={200}
+								sequential={"true"}
+								animateOn={"view"}
+							/>
+						</div>
+						<div>
+							<DecryptedText
+								className={"text-4xl lg:text-6xl leading-[1.2]"}
+								parentClassName={"text-4xl lg:text-6xl leading-[1.2]"}
+								text={"Rangappa"}
+								speed={200}
+								sequential={"true"}
+								animateOn={"view"}
+								style={{ color: 'var(--theme-accent)' }}
+							/>
+						</div>
+
 						{/* Animated subtitle */}
 						<h2 className="text-2xl lg:text-3xl font-semibold text-white/90 mb-6 h-12 flex items-center justify-center lg:justify-start">
-							<span className={theme.accent}>
+							<span style={{ color: 'var(--theme-accent)' }}>
 								{typedText}
 								<span className="animate-pulse">|</span>
 							</span>
@@ -253,7 +226,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 						<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
 							<a
 								href="#projects"
-								className={`inline-flex items-center gap-3 px-5 py-4 ${theme.button} text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group`}
+								className="inline-flex items-center gap-3 px-5 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+								style={{
+									backgroundColor: 'var(--theme-primary)',
+									boxShadow: '0 4px 20px var(--theme-glow)'
+								}}
+								onMouseEnter={(e) => {
+									e.target.style.backgroundColor = 'var(--theme-primary-dark)';
+									e.target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
+								}}
+								onMouseLeave={(e) => {
+									e.target.style.backgroundColor = 'var(--theme-primary)';
+									e.target.style.boxShadow = '0 4px 20px var(--theme-glow)';
+								}}
 							>
 								<Shield className="w-5 h-5 group-hover:rotate-12 transition-transform" />
 								Explore My Work
@@ -261,7 +246,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 
 							<a
 								href="#contact"
-								className={`inline-flex items-center gap-3 px-8 py-4 border-2 ${theme.outline} hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 group`}
+								className="inline-flex items-center gap-3 px-8 py-4 border-2 hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 group"
+								style={{
+									borderColor: 'var(--theme-primary)',
+									color: 'var(--theme-accent)'
+								}}
+								onMouseEnter={(e) => {
+									e.target.style.backgroundColor = 'var(--theme-primary)';
+									e.target.style.color = 'white';
+								}}
+								onMouseLeave={(e) => {
+									e.target.style.backgroundColor = 'transparent';
+									e.target.style.color = 'var(--theme-accent)';
+								}}
 							>
 								<Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
 								Contact Me
@@ -270,8 +267,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 							<a
 								href="Assets/Sudarshan-Rangappa_resume.pdf"
 								download
-								className={`inline-flex items-center gap-3 px-8 py-4 ${theme.button} text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group`}
+								className="inline-flex items-center gap-3 px-8 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
 								aria-label="Download Sudarshan Rangappa's Resume"
+								style={{
+									backgroundColor: 'var(--theme-primary)',
+									boxShadow: '0 4px 20px var(--theme-glow)'
+								}}
+								onMouseEnter={(e) => {
+									e.target.style.backgroundColor = 'var(--theme-primary-dark)';
+									e.target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
+								}}
+								onMouseLeave={(e) => {
+									e.target.style.backgroundColor = 'var(--theme-primary)';
+									e.target.style.boxShadow = '0 4px 20px var(--theme-glow)';
+								}}
 							>
 								<Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
 								Download Resume
@@ -279,7 +288,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 						</div>
 
 						{/* Seeking Badge */}
-						<div className={`inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${theme.gradient} backdrop-blur-sm rounded-full border border-white/20 text-white/90 font-medium`}>
+						<div
+							className="inline-flex items-center gap-3 px-6 py-3 backdrop-blur-sm rounded-full border text-white font-medium"
+							style={{
+								background: `linear-gradient(to right, var(--theme-primary), var(--theme-primary-dark))`,
+								borderColor: 'var(--theme-primary-light)',
+								boxShadow: '0 4px 15px var(--theme-glow)'
+							}}
+						>
 							<Search className="w-4 h-4" />
 							<span className="text-sm">Actively Seeking Cybersecurity Roles (Freshers)</span>
 						</div>
@@ -289,8 +305,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 					<div className="flex-shrink-0">
 						<div className="relative">
 							{/* Animated background rings */}
-							<div className={`absolute inset-0 bg-gradient-to-r ${theme.gradient} rounded-full animate-pulse`}></div>
-							<div className={`absolute inset-2 bg-gradient-to-r ${theme.gradient} rounded-full animate-pulse delay-150`}></div>
+							<div
+								className="absolute inset-0 rounded-full animate-pulse"
+								style={{
+									background: `linear-gradient(to right, var(--theme-primary-light), var(--theme-primary-dark))`,
+									opacity: 0.2
+								}}
+							></div>
+							<div
+								className="absolute inset-2 rounded-full animate-pulse delay-150"
+								style={{
+									background: `linear-gradient(to right, var(--theme-primary-light), var(--theme-primary-dark))`,
+									opacity: 0.2
+								}}
+							></div>
 
 							{/* Profile container */}
 							<div className="relative aspect-[320/320] w-80 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-black/20">
