@@ -1,14 +1,10 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Theme Context
 export const ThemeContext = createContext();
 
-// Theme Provider Component
 export const ThemeProvider = ({ children }: { children: any }) => {
   const [theme, setTheme] = useState('blue');
-
-  // Persist theme to localStorage (optional)
   useEffect(() => {
     const savedTheme = localStorage.getItem('team-theme');
     if (savedTheme && (savedTheme === 'blue' || savedTheme === 'red')) {
@@ -20,12 +16,10 @@ export const ThemeProvider = ({ children }: { children: any }) => {
     localStorage.setItem('team-theme', theme);
   }, [theme]);
 
-  // Apply theme to document root for CSS custom properties
   useEffect(() => {
     const root = document.documentElement;
     
     if (theme === 'red') {
-      // Red team colors
       root.style.setProperty('--theme-primary', '#ef4444');
       root.style.setProperty('--theme-primary-dark', '#dc2626');
       root.style.setProperty('--theme-primary-darker', '#b91c1c');
@@ -38,7 +32,6 @@ export const ThemeProvider = ({ children }: { children: any }) => {
       root.style.setProperty('--theme-glow', 'rgba(239, 68, 68, 0.2)');
       root.style.setProperty('--theme-shadow', 'rgba(239, 68, 68, 0.3)');
     } else {
-      // Blue team colors
       root.style.setProperty('--theme-primary', '#3b82f6');
       root.style.setProperty('--theme-primary-dark', '#2563eb');
       root.style.setProperty('--theme-primary-darker', '#1d4ed8');
@@ -63,7 +56,6 @@ export const ThemeProvider = ({ children }: { children: any }) => {
     </ThemeContext.Provider>
   );
 };
-// Add this export to your ThemeProvider.tsx file
 export const getThemeClasses = (theme: any) => {
   switch (theme) {
     case "red":
@@ -77,7 +69,7 @@ export const getThemeClasses = (theme: any) => {
         border: "border-red-500",
         ring: "ring-red-500",
       };
-    default: // blue
+    default:
       return {
         bg: "bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900",
         accent: "text-blue-400",
