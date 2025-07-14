@@ -68,7 +68,7 @@ const ContactSection = () => {
                                     </div>
                                     <div>
                                         <p className="text-gray-400 text-sm">Email</p>
-                                        <p className="text-white font-medium">sudarshan.rangappa@proton.me</p>
+                                        <p className="text-white font-medium">sudarshan_rangappa@proton.me</p>
                                     </div>
                                 </div>
 
@@ -87,7 +87,7 @@ const ContactSection = () => {
                                     </div>
                                     <div>
                                         <p className="text-gray-400 text-sm">LinkedIn</p>
-                                        <p className="text-white font-medium">linkedin.com/in/sudarshan</p>
+                                        <p className="text-white font-medium">linkedin.com/in/sudarshan-rangappa</p>
                                     </div>
                                 </div>
 
@@ -106,7 +106,7 @@ const ContactSection = () => {
                                     </div>
                                     <div>
                                         <p className="text-gray-400 text-sm">GitHub</p>
-                                        <p className="text-white font-medium">github.com/sudarshan</p>
+                                        <p className="text-white font-medium">github.com/sudarshan-rangappa</p>
                                     </div>
                                 </div>
                             </div>

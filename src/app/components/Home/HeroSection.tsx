@@ -221,6 +221,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
                 parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
                 text={"Sudarshan"}
                 speed={200}
+                sequential={"true"}
                 animateOn={"view"}
                 />
             </div>
@@ -230,6 +231,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
                 parentClassName={`${theme.accent} text-4xl lg:text-6xl leading-[1.2]`}
                 text={"Rangappa"}
                 speed={200}
+                sequential={"true"}
                 animateOn={"view"}
                 />
             </div>
