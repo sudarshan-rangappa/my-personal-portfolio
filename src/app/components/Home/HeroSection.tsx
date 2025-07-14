@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Shield, Mail, Download, Search, User } from "lucide-react";
+import DecryptedText from "../DecryptedText";
 
 interface HeroSectionProps {
 	selectedTheme?: string;
@@ -208,12 +209,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ selectedTheme = "blue" }) => 
 						</div>
 
 						{/* Main title */}
-						<h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+						{/* <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
 							Sudarshan
 							<span className={`block ${theme.accent} text-4xl lg:text-6xl mt-2`}>
 								Rangappa
 							</span>
-						</h1>
+						</h1> */}
+            <div>
+                <DecryptedText
+                className={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
+                parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
+                text={"Sudarshan"}
+                speed={200}
+                animateOn={"view"}
+                />
+            </div>
+            <div>
+                <DecryptedText
+                className={`${theme.accent} text-4xl lg:text-6xl leading-[1.2]`}
+                parentClassName={`${theme.accent} text-4xl lg:text-6xl leading-[1.2]`}
+                text={"Rangappa"}
+                speed={200}
+                animateOn={"view"}
+                />
+            </div>
+            
 						{/* Animated subtitle */}
 						<h2 className="text-2xl lg:text-3xl font-semibold text-white/90 mb-6 h-12 flex items-center justify-center lg:justify-start">
 							<span className={theme.accent}>
