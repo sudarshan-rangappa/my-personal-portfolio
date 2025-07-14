@@ -291,15 +291,46 @@ const HeroSection = () => {
 
 						{/* Seeking Badge */}
 						<div
-							className="inline-flex items-center gap-3 px-6 py-3 backdrop-blur-sm rounded-full border text-white font-medium"
+							className="inline-flex items-center gap-3 px-6 py-3 backdrop-blur-sm rounded-full border text-white font-medium relative overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105 animate-pulse"
 							style={{
 								background: `linear-gradient(to right, var(--theme-primary), var(--theme-primary-dark))`,
 								borderColor: 'var(--theme-primary-light)',
-								boxShadow: '0 4px 15px var(--theme-glow)'
+								boxShadow: '0 4px 15px var(--theme-glow)',
+								animation: 'breathe 3s ease-in-out infinite'
 							}}
 						>
-							<Search className="w-4 h-4" />
-							<span className="text-sm">Actively Seeking Cybersecurity Roles (Freshers)</span>
+							{/* Animated shimmer effect */}
+							<div
+								className="absolute inset-0 -top-px -bottom-px -left-px -right-px rounded-full opacity-30"
+								style={{
+									background: `linear-gradient(90deg, transparent, var(--theme-primary-light), transparent)`,
+									animation: 'shimmer 2s linear infinite'
+								}}
+							></div>
+
+							{/* Pulsing border animation */}
+							<div
+								className="absolute inset-0 rounded-full border-2 opacity-50"
+								style={{
+									borderColor: 'var(--theme-primary-light)',
+									animation: 'borderPulse 2s ease-in-out infinite'
+								}}
+							></div>
+
+							{/* Content */}
+							<div className="relative z-10 flex items-center gap-3">
+								<Search
+									className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12"
+									style={{ animation: 'bounce 2s infinite' }}
+								/>
+								<span className="text-sm font-medium">
+									Actively Seeking Cybersecurity Roles
+								</span>
+							</div>
+
+							{/* Floating dots animation */}
+							<div className="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: 'var(--theme-primary-light)' }}></div>
+							<div className="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--theme-primary)' }}></div>
 						</div>
 					</div>
 
@@ -354,6 +385,47 @@ const HeroSection = () => {
           animation: terminal-scroll linear infinite;
         }
       `}</style>
+	  {/* Custom CSS animations */}
+	<style jsx>{`
+		@keyframes breathe {
+			0%, 100% { 
+				transform: scale(1);
+				box-shadow: 0 4px 15px var(--theme-glow);
+			}
+			50% { 
+				transform: scale(1.02);
+				box-shadow: 0 8px 25px var(--theme-shadow);
+			}
+		}
+		
+		@keyframes shimmer {
+			0% { transform: translateX(-100%); }
+			100% { transform: translateX(100%); }
+		}
+		
+		@keyframes borderPulse {
+			0%, 100% { 
+				opacity: 0.3;
+				transform: scale(1);
+			}
+			50% { 
+				opacity: 0.8;
+				transform: scale(1.05);
+			}
+		}
+		
+		@keyframes bounce {
+			0%, 20%, 53%, 80%, 100% {
+				transform: translateY(0) rotate(0deg);
+			}
+			40%, 43% {
+				transform: translateY(-8px) rotate(5deg);
+			}
+			70% {
+				transform: translateY(-4px) rotate(-2deg);
+			}
+		}
+	`}</style>
 		</section>
 	);
 };
