@@ -5,7 +5,7 @@ import { useTheme } from "@/app/hooks/useTheme";
 import DecryptedText from "../DecryptedText";
 
 const HeroSection = () => {
-	const { theme } = useTheme(); // Use global theme instead of prop
+	const { theme } = useTheme();
 	const [typedText, setTypedText] = useState("");
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -16,8 +16,6 @@ const HeroSection = () => {
 		"Threat Hunter",
 		"SOC Analyst"
 	];
-
-	// Terminal log lines data
 	const logLines = [
 		"[ALERT] Critical: Unauthenticated RCE attempt on server SRV01 from 10.211.55.3",
 		"[INFO] System integrity scan initiated for all endpoints.",
@@ -40,8 +38,6 @@ const HeroSection = () => {
 		"[WARN] Unauthorized software 'unknown_p2p_client.exe' detected on user 'j.doe' machine.",
 		"[INFO] Security awareness training module completed by 92% of employees this quarter."
 	];
-
-	// State for animated log lines
 	const [animatedLogs, setAnimatedLogs] = useState<Array<{
 		id: number;
 		text: string;
@@ -51,22 +47,18 @@ const HeroSection = () => {
 		color: string;
 		lane: number;
 	}>>([]);
-
-	// Function to get log color based on content
 	const getLogColor = (logText: string) => {
 		if (logText.includes('[ALERT]') || logText.includes('[WARN]')) {
 			return "#ef4444"; // red-500
 		}
 		return getComputedStyle(document.documentElement).getPropertyValue('--theme-accent').trim() || "#60a5fa";
 	};
-
-	// Function to create animated log lines
 	const createLogLines = () => {
 		const newLogs = [];
 		const lanes = 8; // Number of vertical lanes
 		const usedLanes = new Set<number>();
 
-		for (let i = 0; i < 12; i++) { // Reduced to 12 logs for better spacing
+		for (let i = 0; i < 12; i++) {
 			const randomLog = logLines[Math.floor(Math.random() * logLines.length)];
 
 			// Assign to available lane
@@ -77,14 +69,14 @@ const HeroSection = () => {
 
 			usedLanes.add(lane);
 
-			const leftPosition = (lane * (100 / lanes)) + (Math.random() * (100 / lanes * 0.8)); // Add some variance within lane
+			const leftPosition = (lane * (100 / lanes)) + (Math.random() * (100 / lanes * 0.8));
 
 			newLogs.push({
 				id: Date.now() + i,
 				text: randomLog,
-				left: `${Math.min(leftPosition, 85)}%`, // Ensure it doesn't go off screen
-				animationDuration: `${12 + Math.random() * 16}s`, // 12-28 seconds
-				animationDelay: `${i * 0.8 + Math.random() * 2}s`, // Stagger start times
+				left: `${Math.min(leftPosition, 85)}%`,
+				animationDuration: `${12 + Math.random() * 16}s`,
+				animationDelay: `${i * 0.8 + Math.random() * 2}s`,
 				color: getLogColor(randomLog),
 				lane: lane
 			});
@@ -97,7 +89,7 @@ const HeroSection = () => {
 		createLogLines();
 		const interval = setInterval(createLogLines, 20000);
 		return () => clearInterval(interval);
-	}, [theme]); // Updated to use theme instead of selectedTheme
+	}, [theme]);
 
 	// Typing animation effect
 	useEffect(() => {
@@ -137,8 +129,6 @@ const HeroSection = () => {
 
 		type();
 	}, []);
-
-	// Fade in animation on mount
 	useEffect(() => {
 		setIsVisible(true);
 	}, []);
@@ -149,7 +139,6 @@ const HeroSection = () => {
 			className={`relative min-h-screen flex items-center py-20 transition-all duration-700 overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 				}`}
 		>
-			{/* Animated Terminal Background */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute inset-0 bg-black/30"></div>
 				{animatedLogs.map((log) => (
@@ -162,8 +151,8 @@ const HeroSection = () => {
 							animationDelay: log.animationDelay,
 							color: log.color,
 							transform: 'translateY(-100%)',
-							zIndex: log.lane, // Use lane as z-index for layering
-							maxWidth: '400px', // Limit max width
+							zIndex: log.lane,
+							maxWidth: '400px',
 							overflow: 'hidden',
 							textOverflow: 'ellipsis'
 						}}
@@ -172,21 +161,15 @@ const HeroSection = () => {
 					</div>
 				))}
 			</div>
-
-			{/* Main Content */}
 			<div className="relative z-10 container mx-auto px-6">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-					{/* Hero Text Content */}
 					<div className="flex-1 text-center lg:text-left max-w-2xl">
-						{/* Terminal-style greeting */}
 						<div
 							className="inline-block font-mono text-sm bg-black/40 px-4 py-2 rounded-lg mb-6 backdrop-blur-sm border border-white/10"
 							style={{ color: 'var(--theme-accent)' }}
 						>
 							<span className="text-white/70">$</span> whoami
 						</div>
-
-						{/* Main title */}
 						<div>
 							<DecryptedText
 								key={`blue-${theme}`}
@@ -210,21 +193,15 @@ const HeroSection = () => {
 								style={{ color: 'var(--theme-accent)' }}
 							/>
 						</div>
-
-						{/* Animated subtitle */}
 						<h2 className="text-2xl lg:text-3xl font-semibold text-white/90 mb-6 h-12 flex items-center justify-center lg:justify-start">
 							<span style={{ color: 'var(--theme-accent)' }}>
 								{typedText}
 								<span className="animate-pulse">|</span>
 							</span>
 						</h2>
-
-						{/* Description */}
 						<p className="text-lg text-white/80 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
 							Building resilient cyber defense environments through hands-on security operations
 						</p>
-
-						{/* CTA Buttons */}
 						<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
 							<a
 								href="#projects"
@@ -288,8 +265,6 @@ const HeroSection = () => {
 								Download Resume
 							</a>
 						</div>
-
-						{/* Seeking Badge */}
 						<div
 							className="inline-flex items-center gap-3 px-6 py-3 backdrop-blur-sm rounded-full border text-white font-medium relative overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105 animate-pulse"
 							style={{
@@ -299,7 +274,6 @@ const HeroSection = () => {
 								animation: 'breathe 3s ease-in-out infinite'
 							}}
 						>
-							{/* Animated shimmer effect */}
 							<div
 								className="absolute inset-0 -top-px -bottom-px -left-px -right-px rounded-full opacity-30"
 								style={{
@@ -307,8 +281,6 @@ const HeroSection = () => {
 									animation: 'shimmer 2s linear infinite'
 								}}
 							></div>
-
-							{/* Pulsing border animation */}
 							<div
 								className="absolute inset-0 rounded-full border-2 opacity-50"
 								style={{
@@ -316,8 +288,6 @@ const HeroSection = () => {
 									animation: 'borderPulse 2s ease-in-out infinite'
 								}}
 							></div>
-
-							{/* Content */}
 							<div className="relative z-10 flex items-center gap-3">
 								<Search
 									className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12"
@@ -327,17 +297,12 @@ const HeroSection = () => {
 									Actively Seeking Cybersecurity Roles
 								</span>
 							</div>
-
-							{/* Floating dots animation */}
 							<div className="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: 'var(--theme-primary-light)' }}></div>
 							<div className="absolute -top-1 -right-1 w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--theme-primary)' }}></div>
 						</div>
 					</div>
-
-					{/* Profile Picture */}
 					<div className="flex-shrink-0">
 						<div className="relative">
-							{/* Animated background rings */}
 							<div
 								className="absolute inset-0 rounded-full animate-pulse"
 								style={{
@@ -352,8 +317,6 @@ const HeroSection = () => {
 									opacity: 0.2
 								}}
 							></div>
-
-							{/* Profile container */}
 							<div className="relative aspect-[320/320] w-80 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-black/20">
 								<img src={"https://i.postimg.cc/9frSnHjk/Chat-GPT-Image-Jun-24-2025-08-35-26-PM.png"} className="w-full h-full object-cover" />
 							</div>
@@ -361,8 +324,6 @@ const HeroSection = () => {
 					</div>
 				</div>
 			</div>
-
-			{/* Custom CSS for terminal scroll animation */}
 			<style jsx>{`
         @keyframes terminal-scroll {
           0% {
@@ -385,8 +346,7 @@ const HeroSection = () => {
           animation: terminal-scroll linear infinite;
         }
       `}</style>
-	  {/* Custom CSS animations */}
-	<style jsx>{`
+		<style jsx>{`
 		@keyframes breathe {
 			0%, 100% { 
 				transform: scale(1);
