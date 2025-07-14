@@ -189,6 +189,7 @@ const HeroSection = () => {
 						{/* Main title */}
 						<div>
 							<DecryptedText
+								key={`blue-${theme}`}
 								className={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
 								parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
 								text={"Sudarshan"}
@@ -199,6 +200,7 @@ const HeroSection = () => {
 						</div>
 						<div>
 							<DecryptedText
+								key={`red-${theme}`}
 								className={"text-4xl lg:text-6xl leading-[1.2]"}
 								parentClassName={"text-4xl lg:text-6xl leading-[1.2]"}
 								text={"Rangappa"}
