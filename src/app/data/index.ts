@@ -20,3 +20,15 @@ const redTeamLogs = [
 	"[DECEPTION] Deployed decoy document 'Q3_salary_plans.xlsx.lnk' with embedded macro payload.",
 	"[ESCALATION] Successfully added user 'pentestsvc' to 'Domain Admins' group via misconfigured GPO."
 ];
+
+const redTeamSubTitles = [
+  "Curious About Attacks",
+  "Trying Tools, Breaking Rules",
+  "Offensive Security",
+  "Penetration Tester",
+  "Red Team Operator",
+  "Web App Security Tester",
+  "Network Intrusion Expert",
+  "Ethical Hacker",
+  "Bug Bounty Beginner",
+]
