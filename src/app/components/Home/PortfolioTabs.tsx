@@ -208,7 +208,7 @@ const PortfolioTabs = () => {
         </div>
     );
 
-    const TechStackItem = ({ tech }) => (
+    const TechStackItem = ({ tech }: { tech: any}) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
