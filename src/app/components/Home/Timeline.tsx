@@ -4,7 +4,7 @@ import { Timeline } from "../ui/timeline";
 export function TimelineDemo() {
   const data = [
     {
-      title: "2024",
+      title: "Present",
       content: (
         <div>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
@@ -44,10 +44,13 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Early 2023",
+      title: "2023 – 2025",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+          <h2 className="mb-0.5 text-6xl font-normal text-neutral-400">NATIONAL FORENSIC SCIENCES UNIVERSITY</h2>
+          <h3 className="mb-0.5 text-3xl font-normal text-neutral-200">Master Of Science, Cyber Security</h3>
+          <h4 className="mb-0.5 text-2xl font-bold text-neutral-100">CGPT:8.24</h4>
+          <p className="mb-1 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             I usually run out of copy, but when I see content this big, I try to
             integrate lorem ipsum.
           </p>
@@ -89,7 +92,7 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Changelog",
+      title: "2020 – 2023",
       content: (
         <div>
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
