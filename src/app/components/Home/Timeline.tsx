@@ -7,33 +7,59 @@ export function TimelineDemo() {
       title: "Present",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Built and launched Aceternity UI and Aceternity UI Pro from scratch
+          <h2 className="mb-1 text-5xl md:text-6xl font-semibold text-neutral-300 tracking-tight leading-snug">
+            The Hustle Phase
+          </h2>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            These days, I’m living the cyber lab life — juggling blogs, LLM
+            pentesting, and red team research like a caffeinated octopus. One
+            tab’s on PortSwigger, another’s on a CTF, and five more are
+            “research,” I swear.
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            Some nights I'm diving deep into Splunk logs, others I’m fuzzing
+            LLMs or breaking a new payload in Burp. Red team by day, blue team
+            by night — or maybe it’s the other way around. Who knows anymore?
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            I’m also pushing updates to my GitHub, applying to gigs that excite
+            me, stalking threat intel feeds like it’s social media, and building
+            structured notes in Obsidian as I go. Down the line, I plan to turn
+            those into a personal blog — something real, raw, and deeply
+            technical.
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+            This isn’t just upskilling — it’s survival training for the cyber
+            jungle. And honestly? I’m having a blast.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://assets.aceternity.com/templates/startup-1.webp"
+              src="https://i.postimg.cc/c1gGsnn1/Present3.jpg"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/templates/startup-2.webp"
+              src="https://i.postimg.cc/BZxNcZWc/Present3.png"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/templates/startup-3.webp"
+              src="https://i.postimg.cc/WbLCTfVS/Present2.png"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/templates/startup-4.webp"
+              src="https://i.postimg.cc/6qmd6P2c/present4.jpg"
               alt="startup template"
               width={500}
               height={500}
