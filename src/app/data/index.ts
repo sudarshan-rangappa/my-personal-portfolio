@@ -32,3 +32,57 @@ const redTeamSubTitles = [
   "Ethical Hacker",
   "Bug Bounty Beginner",
 ]
+
+const redTeamSkill_tools = [
+    "1.Reconnaissance & OSINT";
+        "Recon-ng";
+        "theHarvester";
+        "Shodan";
+        "spiderfoot";
+        "maltego";
+    "2.Scanning & Enumeration"
+        "nmap";
+        "Enum4linux";
+        "WhatWeb";
+        "Dirbuster";
+        "Gobuster";
+        "Netcat";
+        "curl";
+        "nbtscan";
+    "3. Vulnerability scanning & Analysis"
+        "OpenVAS";
+        "Nessus";
+        "Nuclei";
+        "SearchSploit";
+    "4. Exploitation"
+        "Metasploit framework";
+        "SQLMap";
+        "Burp Suite";
+        "MSFvenom";
+    "5. Privilege Escalation";
+        "WinPEAS";
+        "LinPEAS";
+    "6. Post-Exploitation & Lateral Movement"
+        "Bloodhound";
+        "Wget";
+        "Credential Dumpers";
+    "7. Web Application Attacks";
+        "Burp Suite";
+        "DirBuster";
+        "GoBuster";
+        "SQLMap";
+    "8. Social Engineering";
+        "GoPhish ";
+    "9. Network Sniffing & Analysis";
+        "Wireshark ";
+        "NetworkMiner";
+        "tcpdump";
+        "Tshark ";
+        "netdiscover";
+    "10. Reporting & Documentation"
+        "Obsidian";
+        "Notion";
+        
+
+    
+]
