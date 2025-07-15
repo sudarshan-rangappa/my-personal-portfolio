@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const PortfolioTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -90,22 +91,22 @@ const PortfolioTabs = () => {
     ];
 
     const techStack = [
-        { name: "Python", category: "Programming", level: 90, icon: "🐍" },
-        { name: "JavaScript", category: "Programming", level: 85, icon: "🟨" },
-        { name: "React", category: "Frontend", level: 80, icon: "⚛️" },
-        { name: "Node.js", category: "Backend", level: 75, icon: "🟢" },
-        { name: "Wireshark", category: "Security", level: 85, icon: "🦈" },
-        { name: "Metasploit", category: "Security", level: 80, icon: "🔴" },
-        { name: "Burp Suite", category: "Security", level: 75, icon: "🔍" },
-        { name: "Nmap", category: "Security", level: 90, icon: "🗺️" },
-        { name: "Splunk", category: "SIEM", level: 70, icon: "📊" },
-        { name: "ELK Stack", category: "SIEM", level: 75, icon: "🔍" },
-        { name: "Docker", category: "DevOps", level: 80, icon: "🐳" },
-        { name: "Linux", category: "OS", level: 85, icon: "🐧" },
-        { name: "Kali Linux", category: "Security", level: 90, icon: "🔒" },
-        { name: "OSINT", category: "Intelligence", level: 80, icon: "🕵️" },
-        { name: "Incident Response", category: "Security", level: 85, icon: "🚨" },
-        { name: "Threat Hunting", category: "Security", level: 80, icon: "🎯" }
+        { name: "Python", category: "Programming", level: 90, icon: "/nmap-logo.svg" },
+        { name: "JavaScript", category: "Programming", level: 85, icon: "/nmap-logo.svg" },
+        { name: "React", category: "Frontend", level: 80, icon: "/nmap-logo.svg" },
+        { name: "Node.js", category: "Backend", level: 75, icon: "/nmap-logo.svg" },
+        { name: "Wireshark", category: "Security", level: 85, icon: "/nmap-logo.svg" },
+        { name: "Metasploit", category: "Security", level: 80, icon: "/nmap-logo.svg" },
+        { name: "Burp Suite", category: "Security", level: 75, icon: "/nmap-logo.svg" },
+        { name: "Nmap", category: "Security", level: 90, icon: "/nmap-logo.svg" },
+        { name: "Splunk", category: "SIEM", level: 70, icon: "/nmap-logo.svg" },
+        { name: "ELK Stack", category: "SIEM", level: 75, icon: "/nmap-logo.svg" },
+        { name: "Docker", category: "DevOps", level: 80, icon: "/nmap-logo.svg" },
+        { name: "Linux", category: "OS", level: 85, icon: "/nmap-logo.svg" },
+        { name: "Kali Linux", category: "Security", level: 90, icon: "/nmap-logo.svg" },
+        { name: "OSINT", category: "Intelligence", level: 80, icon: "/nmap-logo.svg" },
+        { name: "Incident Response", category: "Security", level: 85, icon: "/nmap-logo.svg" },
+        { name: "Threat Hunting", category: "Security", level: 80, icon: "/nmap-logo.svg" }
     ];
 
     const tabs = [
@@ -213,7 +214,13 @@ const PortfolioTabs = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
                 <div className="relative p-6 z-10">
                     <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl">{tech.icon}</span>
+                        {/* <span className="text-2xl">{tech.icon}</span> */}
+                        <Image 
+                            src={tech.icon}
+                            width={60}
+                            height={60}
+                            alt={`${tech.name}`}
+                        />
                         <div>
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tech.name}</h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">{tech.category}</p>
@@ -300,9 +307,9 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 h-full">
                                 {techStack.map((tech, index) => (
-                                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+                                    <div key={index} className="animate-fade-in h-full" style={{ animationDelay: `${index * 0.05}s` }}>
                                         <TechStackItem tech={tech} />
                                     </div>
                                 ))}
