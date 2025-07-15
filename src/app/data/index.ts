@@ -34,12 +34,12 @@ const redTeamSubTitles = [
 ]
 
 const redTeamSkill_tools = [
-    "1.Reconnaissance & OSINT";
-        "Recon-ng";
-        "theHarvester";
-        "Shodan";
-        "spiderfoot";
-        "maltego";
+    "1.Reconnaissance & OSINT",
+        "Recon-ng",
+        "theHarvester",
+        "Shodan",
+        "spiderfoot",
+        "maltego",
     "2.Scanning & Enumeration"
         "nmap";
         "Enum4linux";
@@ -81,8 +81,5 @@ const redTeamSkill_tools = [
         "netdiscover";
     "10. Reporting & Documentation"
         "Obsidian";
-        "Notion";
-        
-
-    
+        "Notion";    
 ]
