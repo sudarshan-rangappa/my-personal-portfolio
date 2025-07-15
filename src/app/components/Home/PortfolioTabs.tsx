@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
 const PortfolioTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [indicatorStyle, setIndicatorStyle] = useState({});
-    const [showAllTools, setShowAllTools] = useState(false);
     const tabsRef = useRef([]);
 
     // Sample data - replace with your actual data
@@ -92,30 +91,30 @@ const PortfolioTabs = () => {
     ];
 
     const techStack = [
-        { name: "Python", category: "Programming", level: 90, icon: "/nmap-logo.svg" },
-        { name: "JavaScript", category: "Programming", level: 85, icon: "/nmap-logo.svg" },
-        { name: "React", category: "Frontend", level: 80, icon: "/nmap-logo.svg" },
-        { name: "Node.js", category: "Backend", level: 75, icon: "/nmap-logo.svg" },
-        { name: "Wireshark", category: "Security", level: 85, icon: "/nmap-logo.svg" },
-        { name: "Metasploit", category: "Security", level: 80, icon: "/nmap-logo.svg" },
-        { name: "Burp Suite", category: "Security", level: 75, icon: "/nmap-logo.svg" },
-        { name: "Nmap", category: "Security", level: 90, icon: "/nmap-logo.svg" },
-        { name: "Splunk", category: "SIEM", level: 70, icon: "/nmap-logo.svg" },
-        { name: "ELK Stack", category: "SIEM", level: 75, icon: "/nmap-logo.svg" },
-        { name: "Docker", category: "DevOps", level: 80, icon: "/nmap-logo.svg" },
-        { name: "Linux", category: "OS", level: 85, icon: "/nmap-logo.svg" },
-        { name: "Kali Linux", category: "Security", level: 90, icon: "/nmap-logo.svg" },
-        { name: "OSINT", category: "Intelligence", level: 80, icon: "/nmap-logo.svg" },
-        { name: "Incident Response", category: "Security", level: 85, icon: "/nmap-logo.svg" },
-        { name: "Threat Hunting", category: "Security", level: 80, icon: "/nmap-logo.svg" },
-        { name: "Penetration Testing", category: "Security", level: 88, icon: "/nmap-logo.svg" },
-        { name: "Vulnerability Assessment", category: "Security", level: 85, icon: "/nmap-logo.svg" },
-        { name: "Firewall Management", category: "Security", level: 82, icon: "/nmap-logo.svg" },
-        { name: "Network Security", category: "Security", level: 87, icon: "/nmap-logo.svg" },
-        { name: "Cryptography", category: "Security", level: 78, icon: "/nmap-logo.svg" },
-        { name: "Reverse Engineering", category: "Security", level: 83, icon: "/nmap-logo.svg" },
-        { name: "Digital Forensics", category: "Security", level: 79, icon: "/nmap-logo.svg" },
-        { name: "Malware Analysis", category: "Security", level: 81, icon: "/nmap-logo.svg" }
+        { name: "Aircrack-ng", category: "Wifi Cracking", level: 90, icon: "/aircrack-ng-logo.svg" },
+        { name: "Binwalk3", category: "Binary Analysis", level: 85, icon: "/binwalk3-logo.svg" },
+        { name: "Bloodhound", category: "Active Directory Enumeration", level: 80, icon: "/bloodhound-logo.svg" },
+        { name: "SQLMap", category: "DB Exploitation", level: 80, icon: "/sqlmap-logo.svg" },
+        { name: "Ghidra", category: "Reverse Engineering", level: 75, icon: "/ghidra-logo.svg" },
+        { name: "Wireshark", category: "Network Analysis", level: 85, icon: "/wireshark-logo.svg" },
+        { name: "Metasploit", category: "Exploitation", level: 80, icon: "/metasploit-framework-logo.svg" },
+        { name: "Burp Suite", category: "Web Exploitation", level: 75, icon: "/burpsuite-logo.svg" },
+        { name: "Nmap", category: "Network Scanning", level: 90, icon: "/nmap-logo.svg" },
+        { name: "Splunk", category: "SIEM", level: 70, icon: "/splunk.svg" },
+        { name: "Wazuh", category: "SIEM", level: 75, icon: "/WAZUH.png" },
+        { name: "Docker", category: "Containerization", level: 80, icon: "/docker-icon.svg" },
+        { name: "Maltego", category: "OSINT", level: 85, icon: "/maltego-logo.svg" },
+        { name: "theHarvester", category: "Enumeration", level: 90, icon: "/theharvester-logo.svg" },
+        { name: "sherlock", category: "Username Enumeration", level: 80, icon: "/sherlock-logo.svg" },
+        { name: "Proxychains", category: "Anonymity", level: 85, icon: "/proxychains-ng-logo.svg" },
+        { name: "John The Ripper", category: "Bruteforce", level: 80, icon: "/john-the-ripper.svg" },
+        { name: "Hydra", category: "Password Cracking", level: 80, icon: "/hydra-logo.svg" },
+        { name: "HashCat", category: "Password Cracking", level: 80, icon: "/hashcat-logo.svg" },
+        { name: "BetterCap", category: "MiTM", level: 80, icon: "/bettercap-logo.svg" },
+        { name: "OpenVas", category: "Vulnerability Scanner", level: 80, icon: "/openvas.svg" },
+        { name: "Nessus", category: "Vulnerability Scanner", level: 80, icon: "/nessus.svg" },
+        { name: "Autopsy", category: "Digital Forensic", level: 80, icon: "/autopsy-logo.svg" },
+        { name: "Obsidian", category: "Documentation", level: 80, icon: "/2023_Obsidian_logo.svg" }
     ];
 
     const tabs = [
@@ -123,8 +122,6 @@ const PortfolioTabs = () => {
         { id: 1, name: "Certificates", icon: Award },
         { id: 2, name: "Tools", icon: Wrench }
     ];
-
-    const INITIAL_TOOLS_COUNT = 16;
 
     useEffect(() => {
         setIsVisible(true);
@@ -220,20 +217,20 @@ const PortfolioTabs = () => {
     );
 
     const TechStackItem = ({ tech }: { tech: any}) => (
-        <div className="group relative h-full w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)] h-full">
+        <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
+            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-                <div className="relative p-6 z-10 h-full flex flex-col">
-                    <div className="flex items-center gap-3">
+                <div className="relative p-6 z-10">
+                    <div className="flex items-center gap-3 mb-3">
+                        {/* <span className="text-2xl">{tech.icon}</span> */}
                         <Image 
                             src={tech.icon}
-                            width={40}
-                            height={40}
+                            width={70}
+                            height={70}
                             alt={`${tech.name}`}
-                            className="flex-shrink-0"
                         />
-                        <div className="flex-1 min-w-0">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">{tech.name}</h3>
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tech.name}</h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">{tech.category}</p>
                         </div>
                     </div>
@@ -241,8 +238,6 @@ const PortfolioTabs = () => {
             </div>
         </div>
     );
-
-    const displayedTools = showAllTools ? techStack : techStack.slice(0, INITIAL_TOOLS_COUNT);
 
     return (
         <section className={`relative py-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -320,32 +315,13 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-                                {displayedTools.map((tech, index) => (
-                                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 h-full">
+                                {techStack.map((tech, index) => (
+                                    <div key={index} className="animate-fade-in h-full" style={{ animationDelay: `${index * 0.05}s` }}>
                                         <TechStackItem tech={tech} />
                                     </div>
                                 ))}
                             </div>
-                            
-                            {/* View More/Less Button */}
-                            {techStack.length > INITIAL_TOOLS_COUNT && (
-                                <div className="flex justify-center mt-8">
-                                    <button
-                                        onClick={() => setShowAllTools(!showAllTools)}
-                                        className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 border border-blue-500/20 hover:border-purple-500/30 text-gray-900 dark:text-white transition-all duration-300 hover:scale-105 active:scale-95"
-                                    >
-                                        <span className="font-medium">
-                                            {showAllTools ? 'Show Less' : `View More (${techStack.length - INITIAL_TOOLS_COUNT} more)`}
-                                        </span>
-                                        {showAllTools ? (
-                                            <ChevronUp className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" />
-                                        ) : (
-                                            <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
-                                        )}
-                                    </button>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
