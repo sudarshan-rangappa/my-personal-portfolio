@@ -73,13 +73,20 @@ const redTeamSkill_tools = [
         "SQLMap";
     "8. Social Engineering";
         "GoPhish ";
-    "9. Network Sniffing & Analysis";
+    "9. Credential Attacks & Passwords"
+        "hashcat";
+        "hydra";
+        "John the Ripper";
+    "10. Network Sniffing & Analysis";
         "Wireshark ";
         "NetworkMiner";
         "tcpdump";
         "Tshark ";
         "netdiscover";
-    "10. Reporting & Documentation"
+    "11. Reporting & Documentation"
         "Obsidian";
-        "Notion";    
+        "Notion";
+
+
+    
 ]
