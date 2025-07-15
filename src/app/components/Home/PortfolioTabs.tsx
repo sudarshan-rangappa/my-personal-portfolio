@@ -219,18 +219,6 @@ const PortfolioTabs = () => {
                             <p className="text-gray-600 dark:text-gray-400 text-sm">{tech.category}</p>
                         </div>
                     </div>
-                    <div className="mb-2">
-                        <div className="flex justify-between text-sm text-gray-700 dark:text-gray-300 mb-1">
-                            <span>Proficiency</span>
-                            <span>{tech.level}%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                            <div
-                                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                                style={{ width: `${tech.level}%` }}
-                            ></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
