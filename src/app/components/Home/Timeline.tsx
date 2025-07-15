@@ -85,36 +85,35 @@ export function TimelineDemo() {
           </p>
 
           <div className="grid grid-cols-2 gap-4">
-  <img
-    src="https://i.postimg.cc/Dy26xQ6x/NFSU1.jpg"
-    alt="nfsu podium"
-    width={500}
-    height={500}
-    className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover object-top shadow-lg"
-  />
-  <img
-    src="https://i.postimg.cc/DzXjsvfs/NFSU00.jpg"
-    alt="feature template"
-    width={500}
-    height={500}
-    className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-center shadow-lg"
-  />
-  <img
-    src="https://i.postimg.cc/4dkqy7gj/NFSU3.jpg"
-    alt="classroom friends"
-    width={500}
-    height={500}
-    className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover shadow-lg"
-  />
-  <img
-    src="https://i.postimg.cc/Rh8cCfrH/nfsu4.jpg"
-    alt="ethnic day"
-    width={500}
-    height={500}
-    className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover shadow-lg"
-  />
-</div>
-
+            <img
+              src="https://i.postimg.cc/Dy26xQ6x/NFSU1.jpg"
+              alt="nfsu podium"
+              width={500}
+              height={500}
+              className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover object-top shadow-lg"
+            />
+            <img
+              src="https://i.postimg.cc/DzXjsvfs/NFSU00.jpg"
+              alt="feature template"
+              width={500}
+              height={500}
+              className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-center shadow-lg"
+            />
+            <img
+              src="https://i.postimg.cc/4dkqy7gj/NFSU3.jpg"
+              alt="classroom friends"
+              width={500}
+              height={500}
+              className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover shadow-lg"
+            />
+            <img
+              src="https://i.postimg.cc/Rh8cCfrH/nfsu4.jpg"
+              alt="ethnic day"
+              width={500}
+              height={500}
+              className="h-40 md:h-64 lg:h-[320px] w-full rounded-lg object-cover shadow-lg"
+            />
+          </div>
         </div>
       ),
     },
@@ -122,50 +121,66 @@ export function TimelineDemo() {
       title: "2020 – 2023",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Deployed 5 new components on Aceternity today
+          <h2 className="mb-1 text-5xl md:text-6xl font-semibold text-neutral-300 tracking-tight leading-snug">
+            BENGALURU CITY UNIVERSITY
+          </h2>
+
+          <h3 className="mb-1 text-2xl md:text-3xl font-medium text-[#40ffaa] tracking-wide">
+            Bachelor Of Computer Applications
+          </h3>
+
+          <h4 className="mb-2 text-xl md:text-2xl font-bold text-[#00e0ff]">
+            CGPA: 8.16
+          </h4>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            Bengaluru City University was where it all began. I walked in
+            curious and clueless, but found a place full of energy, chaos, and
+            unexpected friendships.
           </p>
-          <div className="mb-8">
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Card grid component
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Startup template Aceternity
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Random file upload lol
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Himesh Reshammiya Music CD
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Salman Bhai Fan Club registrations open
-            </div>
-          </div>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            From writing my first line of code to launching mini projects with
+            my gang, we figured things out one bug at a time — usually over chai
+            and loud music in the background.
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            It wasn’t just classrooms and labs. It was college fests, last-bench
+            jokes, photo sessions, group pranks, and those unforgettable 2 a.m.
+            pizza-fueled brainstorming nights.
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+            By the end of it, I had more than just a degree. I had memories, a
+            crew, and the confidence to dive into cybersecurity — all thanks to
+            those wild, wonderful BCU days.
+          </p>
+
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://assets.aceternity.com/pro/hero-sections.png"
+              src="https://i.postimg.cc/vB6JQJN8/BCU03.jpg"
               alt="hero template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/features-section.png"
+              src="https://i.postimg.cc/BQcGPGQX/BCU04.jpg"
               alt="feature template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/pro/bento-grids.png"
+              src="https://i.postimg.cc/bvFPYHYg/BCU00.jpg"
               alt="bento template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/cards.png"
+              src="https://i.postimg.cc/CKdy2BCq/BCU02.jpg"
               alt="cards template"
               width={500}
               height={500}
