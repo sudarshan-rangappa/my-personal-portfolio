@@ -47,17 +47,43 @@ export function TimelineDemo() {
       title: "2023 – 2025",
       content: (
         <div>
-          <h2 className="mb-0.5 text-6xl font-normal text-neutral-400">NATIONAL FORENSIC SCIENCES UNIVERSITY</h2>
-          <h3 className="mb-0.5 text-3xl font-normal text-neutral-200">Master Of Science, Cyber Security</h3>
-          <h4 className="mb-0.5 text-2xl font-bold text-neutral-100">CGPT:8.24</h4>
-          <p className="mb-1 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
+          <h2 className="mb-1 text-5xl md:text-6xl font-semibold text-neutral-300 tracking-tight leading-snug">
+            NATIONAL FORENSIC SCIENCES UNIVERSITY
+          </h2>
+
+          <h3 className="mb-1 text-2xl md:text-3xl font-medium text-[#40ffaa] tracking-wide">
+            Master of Science, Cyber Security
+          </h3>
+
+          <h4 className="mb-2 text-xl md:text-2xl font-bold text-[#00e0ff]">
+            CGPT: 8.24
+          </h4>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            My two years at NFSU weren’t just about cybersecurity—they were
+            about people, night labs, bad coffee, inside jokes, and building
+            something meaningful.
           </p>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Lorem ipsum is for people who are too lazy to write copy. But we are
-            not. Here are some more example of beautiful designs I built.
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            We started with the basics—Cyber Warfare, AI, Web App Security—but
+            quickly leveled up into Malware Analysis, Incident Response, and
+            late-night lab sessions that turned strangers into a team.
           </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
+            Semester 3 brought chaos in the best way: Cloud, IoT, Blockchain,
+            and electives like Critical Infrastructure and Social Network
+            Analysis. Somewhere between deadlines and pizza-fueled debates, I
+            built a strong circle I’ll never forget.
+          </p>
+
+          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+            It all wrapped with my Major Project, where I created a full-blown
+            Cyber Defense Lab—but the real highlight? Doing it all with a crew
+            who made even packet captures fun.
+          </p>
+
           <div className="grid grid-cols-2 gap-4">
             <img
               src="https://assets.aceternity.com/pro/hero-sections.png"
