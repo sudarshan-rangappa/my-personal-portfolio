@@ -105,9 +105,11 @@ export function TimelineDemo() {
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
-            It all wrapped with my Major Project, where I created a full-blown
-            Cyber Defense Lab—but the real highlight? Doing it all with a crew
-            who made even packet captures fun.
+            It all wrapped with my Major Project — ICDE (Integrated Cyber
+            Defense Environment) — a full-blown, self-built Cyber Defense Lab.
+            But the real highlight? Pulling it off solo, late nights and all,
+            and still managing to make packet captures feel like a victory
+            dance.
           </p>
 
           <div className="grid grid-cols-2 gap-4">
