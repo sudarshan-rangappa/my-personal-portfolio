@@ -34,12 +34,12 @@ const redTeamSubTitles = [
 ]
 
 const redTeamSkill_tools = [
-    "1.Reconnaissance & OSINT";
-        "Recon-ng";
-        "theHarvester";
-        "Shodan";
-        "spiderfoot";
-        "maltego";
+    "1.Reconnaissance & OSINT",
+        "Recon-ng",
+        "theHarvester",
+        "Shodan",
+        "spiderfoot",
+        "maltego",
     "2.Scanning & Enumeration"
         "nmap";
         "Enum4linux";
