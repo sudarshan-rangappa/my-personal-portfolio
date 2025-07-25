@@ -22,7 +22,7 @@ const redTeamLogs = [
 ];
 
 const redTeamSubTitles = [
-  "Curious About Attacks",
+  "Curious About Attackss",
   "Trying Tools, Breaking Rules",
   "Offensive Security",
   "Penetration Tester",
