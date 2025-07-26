@@ -16,6 +16,7 @@ const HeroSection = () => {
 		animationDelay: string;
 		color: string;
 		lane: number;
+		createdAt?: number;
 	}>>([]);
 
 	// Theme-specific subtitles
@@ -133,41 +134,72 @@ const HeroSection = () => {
 	};
 
 	const createLogLines = () => {
-		const currentLogLines = getCurrentLogLines(); // Get theme-specific logs
-		const newLogs = [];
-		const lanes = 8; // Number of vertical lanes
-		const usedLanes = new Set<number>();
+    const currentLogLines = getCurrentLogLines();
+    const lanes = 12; // Increase lanes for better distribution
+    
+    // Get currently active lanes to avoid collision
+    const activeLanes = new Set(animateddLogs.map(log => log.lane));
+    
+    // Create fewer logs at once to prevent crowding
+    const newLogsCount = 2; // Reduced from 3-4 to 2
+    const newLogs = [];
+    
+    for (let i = 0; i < newLogsCount; i++) {
+        const randomLog = currentLogLines[Math.floor(Math.random() * currentLogLines.length)];
+        
+        // Find an available lane more effectively
+        let lane: number;
+        let attempts = 0;
+        do {
+            lane = Math.floor(Math.random() * lanes);
+            attempts++;
+        } while (activeLanes.has(lane) && attempts < 50); // Increased attempts
+        
+        // If we can't find a free lane, use a random one with offset
+        if (attempts >= 50) {
+            lane = Math.floor(Math.random() * lanes);
+        }
+        
+        activeLanes.add(lane); // Mark this lane as used
+        
+        // Better positioning with proper spacing
+        const laneWidth = 100 / lanes;
+        const leftPosition = (lane * laneWidth) + (Math.random() * laneWidth * 0.7);
+        const animationDuration = 20 + Math.random() * 15; // 20-35 seconds
+        
+        newLogs.push({
+            id: Date.now() + i + Math.random() * 1000, // More unique IDs
+            text: randomLog,
+            left: `${Math.min(leftPosition, 85)}%`,
+            animationDuration: `${animationDuration}s`,
+            animationDelay: `${i * 1.5}s`, // Longer delay between logs
+            color: getLogColor(randomLog, theme),
+            lane: lane,
+            createdAt: Date.now()
+        });
+    }
+    
+    setAnimateddLogs(prevLogs => {
+        const currentTime = Date.now();
+        // Remove logs older than 60 seconds
+        const filteredLogs = prevLogs.filter(log => 
+            currentTime - (log.createdAt || 0) < 60000
+        );
+        return [...filteredLogs, ...newLogs];
+    });
+};
 
-		for (let i = 0; i < 12; i++) {
-			const randomLog = currentLogLines[Math.floor(Math.random() * currentLogLines.length)];
-
-			// Assign to available lane
-			let lane: number;
-			do {
-				lane = Math.floor(Math.random() * lanes);
-			} while (usedLanes.has(lane) && usedLanes.size < lanes);
-
-			usedLanes.add(lane);
-
-			const leftPosition = (lane * (100 / lanes)) + (Math.random() * (100 / lanes * 0.8));
-
-			newLogs.push({
-				id: Date.now() + i,
-				text: randomLog,
-				left: `${Math.min(leftPosition, 85)}%`,
-				animationDuration: `${12 + Math.random() * 16}s`,
-				animationDelay: `${i * 0.8 + Math.random() * 2}s`,
-				color: getLogColor(randomLog, theme), // Pass theme to getLogColor
-				lane: lane
-			});
-		}
-		setAnimateddLogs(newLogs);
-	};
 
 	// Initialize and update log lines
 	useEffect(() => {
+		// Clear existing logs when theme changes
+		setAnimateddLogs([]);
+		
+		// Initial burst of logs for new theme
 		createLogLines();
-		const interval = setInterval(createLogLines, 20000);
+		
+		// Create logs more frequently for continuous stream
+		const interval = setInterval(createLogLines, 3000); // Every 4 seconds instead of 20
 		return () => clearInterval(interval);
 	}, [theme]);
 
@@ -243,24 +275,29 @@ const HeroSection = () => {
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute inset-0 bg-black/30"></div>
 				{animateddLogs.map((log) => (
-					<div
-						key={log.id}
-						className="absolute top-0 font-mono text-xs opacity-20 whitespace-nowrap animate-terminal-scroll"
-						style={{
-							left: log.left,
-							animationDuration: log.animationDuration,
-							animationDelay: log.animationDelay,
-							color: log.color,
-							transform: 'translateY(-100%)',
-							zIndex: log.lane,
-							maxWidth: '400px',
-							overflow: 'hidden',
-							textOverflow: 'ellipsis'
-						}}
-					>
-						{log.text}
-					</div>
-				))}
+    <div
+        key={log.id}
+        className="absolute top-0 font-mono text-xs opacity-20 whitespace-nowrap animate-terminal-scroll"
+        style={{
+            left: log.left,
+            animationDuration: log.animationDuration,
+            animationDelay: log.animationDelay,
+            color: log.color,
+            transform: 'translateY(-100%)',
+            zIndex: Math.floor(Math.random() * 10) + 1, // Random z-index to prevent same-level stacking
+            maxWidth: '500px', // Increased from 400px
+            minWidth: '300px', // Add minimum width
+            overflow: 'visible', // Changed from 'hidden' to 'visible'
+            textOverflow: 'clip', // Changed from 'ellipsis'
+            fontSize: '11px', // Slightly smaller font
+            lineHeight: '1.2',
+            paddingRight: '20px' // Add some padding to prevent cutoff
+        }}
+    >
+        {log.text}
+    </div>
+))}
+
 			</div>
 			<div className="relative z-10 container mx-auto px-6">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -426,27 +463,35 @@ const HeroSection = () => {
 				</div>
 			</div>
 			<style jsx>{`
-        @keyframes terminal-scroll {
-          0% {
-            transform: translateY(-100%);
+    @keyframes terminal-scroll {
+        0% {
+            transform: translateY(-50px); // Start slightly above viewport
             opacity: 0;
-          }
-          10% {
+        }
+        5% {
+            opacity: 0.15;
+        }
+        10% {
             opacity: 0.2;
-          }
-          90% {
+        }
+        85% {
             opacity: 0.2;
-          }
-          100% {
-            transform: translateY(100vh);
+        }
+        95% {
+            opacity: 0.1;
+        }
+        100% {
+            transform: translateY(calc(100vh + 50px)); // End slightly below viewport
             opacity: 0;
-          }
         }
-        
-        .animate-terminal-scroll {
-          animation: terminal-scroll linear infinite;
-        }
-      `}</style>
+    }
+    
+    .animate-terminal-scroll {
+        animation: terminal-scroll linear infinite;
+        will-change: transform, opacity; // Optimize for animation
+    }
+`}</style>
+
 		<style jsx>{`
 		@keyframes breathe {
 			0%, 100% { 
