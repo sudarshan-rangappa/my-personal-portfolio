@@ -59,34 +59,40 @@ const PortfolioTabs = () => {
         {
             title: "Certified Ethical Hacker (CEH)",
             issuer: "EC-Council",
-            date: "2024",
-            credentialId: "CEH-001-2024",
+            date: "Jan 2023",
+            credentialId: "ECC6238917054",
             description: "Comprehensive ethical hacking and penetration testing certification",
-            badge: "https://via.placeholder.com/100x100/1e293b/60a5fa?text=CEH"
+            badge: "/CEH_2E345519D3F7.png",
+            verifyLink: "https://drive.google.com/file/d/1GkKMUh5BsZ0s9CIRRPoQTrq6M4IWyooC/view?usp=drive_link"
+
         },
         {
-            title: "CompTIA Security+",
-            issuer: "CompTIA",
-            date: "2024",
-            credentialId: "COMP001-2024",
-            description: "Foundation-level security certification covering core security concepts",
-            badge: "https://via.placeholder.com/100x100/1e293b/60a5fa?text=Sec+"
+            title: "Open Source Intelligence",
+            issuer: "Basel Institute On Governance",
+            date: "June 2025",
+            credentialId: "N/A",
+            description: "Fundamentals of open-source intelligence gathering and analysis techniques.",
+            badge: "/Basel-icon.png",
+            verifyLink: "https://drive.google.com/file/d/1q0QfwW1JYuPWSss6OX26-n8HJlgc_c9Y/view?usp=drive_link"
         },
         {
-            title: "CISSP",
-            issuer: "ISC2",
-            date: "2024",
-            credentialId: "CISSP-2024",
-            description: "Advanced security certification for experienced professionals",
-            badge: "https://via.placeholder.com/100x100/1e293b/60a5fa?text=CISSP"
+            title: "Fundamentals Of Deep Learning",
+            issuer: "NVDIA",
+            date: "Dec 2023",
+            credentialId: "N/A",
+            description: "Introduction to deep learning concepts, neural networks, and model training using NVIDIA frameworks.",
+            badge: "/Nvidia_logo.svg",
+            verifyLink: "https://drive.google.com/file/d/1q0QfwW1JYuPWSss6OX26-n8HJlgc_c9Y/view?usp=drive_link"
+
         },
         {
-            title: "AWS Security Specialty",
-            issuer: "Amazon Web Services",
-            date: "2024",
-            credentialId: "AWS-SEC-2024",
-            description: "Cloud security specialization for AWS environments",
-            badge: "https://via.placeholder.com/100x100/1e293b/60a5fa?text=AWS"
+            title: "Cyber Threat Intelligence 101",
+            issuer: "ARCx",
+            date: "July 2025",
+            credentialId: "N/a",
+            description: "Basics of cyber threat intelligence, including threat actor profiling, TTP analysis, and intelligence lifecycle.",
+            badge: "/stream_photo_526acdcc_227edd04cfeacc0a75ae2719adf223f0f1fed6e3.webp",
+            verifyLink: "https://drive.google.com/file/d/19yc59HfKLml43eWuXXbg-y_uOXn43_yu/view?usp=drive_link"
         }
     ];
 
@@ -187,7 +193,14 @@ const PortfolioTabs = () => {
         </div>
     );
 
-    const CertificateCard = ({ cert }) => (
+   const CertificateCard = ({ cert }) => {
+    const handleVerifyClick = () => {
+        if (cert.verifyLink) {
+            window.open(cert.verifyLink, '_blank');
+        }
+    };
+
+    return (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-blue-500/5 to-purple-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
@@ -205,8 +218,11 @@ const PortfolioTabs = () => {
                             <p className="text-gray-600 dark:text-gray-300/70 text-sm leading-relaxed mb-4">{cert.description}</p>
                             <div className="flex items-center justify-between">
                                 <span className="text-xs text-gray-500 dark:text-gray-500 font-mono">ID: {cert.credentialId}</span>
-                                <button className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm transition-colors duration-200">
-                                    Verify →
+                                <button 
+                                    onClick={handleVerifyClick}
+                                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm transition-colors duration-200 cursor-pointer"
+                                >
+                                    View →
                                 </button>
                             </div>
                         </div>
@@ -215,6 +231,7 @@ const PortfolioTabs = () => {
             </div>
         </div>
     );
+};
 
     const TechStackItem = ({ tech }: { tech: any}) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
