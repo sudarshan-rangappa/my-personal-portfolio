@@ -19,7 +19,7 @@ const redTeamLogs = [
 	"[C2] SSH tunnel established from target's DMZ machine to C2 server at 45.123.76.21:22.",
 	"[DECEPTION] Deployed decoy document 'Q3_salary_plans.xlsx.lnk' with embedded macro payload.",
 	"[ESCALATION] Successfully added user 'pentestsvc' to 'Domain Admins' group via misconfigured GPO."
-];
+],
 
 const redTeamSubTitles = [
   "Curious About Attacks",
@@ -41,51 +41,51 @@ const redTeamSkill_tools = [
         "spiderfoot",
         "maltego",
     "2.Scanning & Enumeration"
-        "nmap";
-        "Enum4linux";
-        "WhatWeb";
-        "Dirbuster";
-        "Gobuster";
-        "Netcat";
-        "curl";
-        "nbtscan";
+        "nmap",
+        "Enum4linux",
+        "WhatWeb",
+        "Dirbuster",
+        "Gobuster",
+        "Netcat",
+        "curl",
+        "nbtscan",
     "3. Vulnerability scanning & Analysis"
-        "OpenVAS";
-        "Nessus";
-        "Nuclei";
-        "SearchSploit";
+        "OpenVAS",
+        "Nessus",
+        "Nuclei",
+        "SearchSploit",
     "4. Exploitation"
-        "Metasploit framework";
-        "SQLMap";
-        "Burp Suite";
-        "MSFvenom";
-    "5. Privilege Escalation";
-        "WinPEAS";
-        "LinPEAS";
+        "Metasploit framework",
+        "SQLMap",
+        "Burp Suite",
+        "MSFvenom",
+    "5. Privilege Escalation",
+        "WinPEAS",
+        "LinPEAS",
     "6. Post-Exploitation & Lateral Movement"
-        "Bloodhound";
-        "Wget";
-        "Credential Dumpers";
-    "7. Web Application Attacks";
-        "Burp Suite";
-        "DirBuster";
-        "GoBuster";
-        "SQLMap";
-    "8. Social Engineering";
-        "GoPhish ";
+        "Bloodhound",
+        "Wget",
+        "Credential Dumpers",
+    "7. Web Application Attacks",
+        "Burp Suite",
+        "DirBuster",
+        "GoBuster",
+        "SQLMap",
+    "8. Social Engineering",
+        "GoPhish ",
     "9. Credential Attacks & Passwords"
-        "hashcat";
-        "hydra";
-        "John the Ripper";
-    "10. Network Sniffing & Analysis";
-        "Wireshark ";
-        "NetworkMiner";
-        "tcpdump";
-        "Tshark ";
-        "netdiscover";
+        "hashcat",
+        "hydra",
+        "John the Ripper",
+    "10. Network Sniffing & Analysis",
+        "Wireshark ",
+        "NetworkMiner",
+        "tcpdump",
+        "Tshark ",
+        "netdiscover",
     "11. Reporting & Documentation"
-        "Obsidian";
-        "Notion";
+        "Obsidian",
+        "Notion",
 
 
     
