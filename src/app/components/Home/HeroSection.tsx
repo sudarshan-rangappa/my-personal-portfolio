@@ -71,28 +71,42 @@ const HeroSection = () => {
 			"[WARN] Unauthorized software 'unknown_p2p_client.exe' detected on user 'j.doe' machine.",
 			"[INFO] Security awareness training module completed by 92% of employees this quarter."
 		],
-		red: [
-			"[RECON] Subdomain enumeration found 8 subdomains for target corp.internaldomain.com.",
-			"[RECON] Port scan on 192.168.33.10 revealed open ports: 80, 135, 445, 5985 (WinRM).",
-			"[EXPLOIT] Successfully triggered EternalBlue (CVE-2017-0144) on target 192.168.33.22 - SYSTEM shell obtained.",
-			"[PRIVESC] Escalated privileges via unquoted service path on APP-SRV02 - elevated to NT AUTHORITY\\SYSTEM.",
-			"[LATERAL] Harvested credentials for user 'svc_backup' via LSASS memory dump using Mimikatz.",
-			"[MOVE] Used PsExec to pivot from SRV02 to DB-SERVER01 (192.168.33.35) with domain admin privileges.",
-			"[C2] Established reverse HTTPS shell to C2 at 10.0.0.5:443 using Cobalt Strike Beacon.",
-			"[PERSISTENCE] Deployed registry-based startup script on WKSTN-07 for long-term persistence.",
-			"[BYPASS] AMSI bypass script executed successfully - payload execution undetected by AV.",
-			"[ENUM] Queried LDAP for active directory users and groups from DC01 - 137 accounts enumerated.",
-			"[DATAEXFIL] Compressed and exfiltrated HR share (1.2GB) via DNS tunneling to attacker-server.com.",
-			"[DEFENSE-EVASION] Cleared Windows Event Logs using wevtutil on 3 compromised hosts.",
-			"[CLEANUP] Removed all payloads and artifacts from C:\\Temp and cleared shimcache.",
-			"[SOC-MOCK] Injected fake security alerts into SIEM to divert SOC analyst attention.",
-			"[PERSISTENCE] Created scheduled task 'WindowsUpdateChecker' to maintain access every 2 hours.",
-			"[DISCOVERY] Netstat output reveals open RDP from internal to 192.168.33.50 – potential lateral path.",
-			"[EXPLOIT] Exploited vulnerable Jenkins endpoint at http://ci.corp.com/script for RCE.",
-			"[C2] SSH tunnel established from target's DMZ machine to C2 server at 45.123.76.21:22.",
-			"[DECEPTION] Deployed decoy document 'Q3_salary_plans.xlsx.lnk' with embedded macro payload.",
-			"[ESCALATION] Successfully added user 'pentestsvc' to 'Domain Admins' group via misconfigured GPO."
-		]
+	red: [
+    // Network Reconnaissance
+    "root@kali:~# nmap -sS -A 192.168.1.0/24",
+    "root@kali:~# nmap -p- --min-rate=1000 -T4 target.corp.com",
+    "root@kali:~# burpsuite -config config.json",
+    "root@kali:~# gobuster dir -u http://target.corp.com -w /usr/share/wordlists/common.txt",
+    "root@kali:~# nikto -h http://192.168.1.50",
+    "root@kali:~# sqlmap -u \"http://target.corp.com/login.php\" --dbs",
+    "root@kali:~# wfuzz -c -z file,/usr/share/seclists/common.txt -u http://target.corp.com/FUZZ",
+    "root@kali:~# msfconsole -q",
+    "msf6 > use exploit/windows/smb/ms17_010_eternalblue",
+    "msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 192.168.1.50",
+    "meterpreter > hashdump",
+    "meterpreter > getuid",
+    "meterpreter > sysinfo",
+    "root@kali:~# bloodhound-python -u admin -p password -ns 192.168.1.10 -d domain.local",
+    "root@kali:~# impacket-secretsdump CORP/administrator@192.168.1.50",
+    "root@kali:~# crackmapexec smb 192.168.1.0/24 -u admin -p password123",
+    "root@kali:~# evil-winrm -i 192.168.1.55 -u administrator -p password123",
+    "root@kali:~# john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt",
+    "root@kali:~# hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.50",
+    "root@kali:~# hashcat -m 0 -a 3 hash.txt ?a?a?a?a",
+    "root@kali:~# aircrack-ng -w wordlist.txt -b 00:14:6C:7E:40:80 wlan0",
+    "root@kali:~# maltego -t target.domain.com",
+    "root@kali:~# theharvester -d target.com -b google",
+    "root@kali:~# sherlock Rangappa",
+    "root@kali:~# subfinder -d target.corp.com | httpx -silent",
+    "root@kali:~# bettercap -X -T 192.168.1.1",
+    "root@kali:~# responder -I eth0 -wrf",
+    "root@kali:~# proxychains nmap -sT -Pn 192.168.1.1",   
+    "root@kali:~# binwalk firmware.bin",
+    "root@kali:~# ghidra",  
+    "root@kali:~# enum4linux -a 192.168.1.50",
+    "root@kali:~# searchsploit apache 2.4.6"
+]
+
 	};
 
 	const getCurrentLogLines = () => {
@@ -294,7 +308,60 @@ const HeroSection = () => {
             paddingRight: '20px' // Add some padding to prevent cutoff
         }}
     >
-        {log.text}
+        {theme === 'red' ? (
+    // Kali Linux terminal coloring
+    <span>
+        {log.text.startsWith('root@kali:~#') ? (
+            <>
+                <span style={{ color: '#ff6b6b' }}>root</span>
+                <span style={{ color: '#ffffff' }}>@</span>
+                <span style={{ color: '#4ecdc4' }}>kali</span>
+                <span style={{ color: '#ffffff' }}>:</span>
+                <span style={{ color: '#ffe66d' }}>~</span>
+                <span style={{ color: '#00ff41' }}># </span>
+                <span style={{ color: '#ffffff' }}>
+                    {log.text.replace('root@kali:~# ', '')}
+                </span>
+            </>
+        ) : log.text.startsWith('msf6 >') ? (
+            <>
+                <span style={{ color: '#ff6b6b' }}>msf6</span>
+                <span style={{ color: '#00ff41' }}> > </span>
+                <span style={{ color: '#ffffff' }}>
+                    {log.text.replace('msf6 > ', '')}
+                </span>
+            </>
+        ) : log.text.startsWith('msf6 exploit') ? (
+            <>
+                <span style={{ color: '#ff6b6b' }}>msf6</span>
+                <span style={{ color: '#ffffff' }}> </span>
+                <span style={{ color: '#f59e0b' }}>exploit</span>
+                <span style={{ color: '#00ff41' }}>(</span>
+                <span style={{ color: '#4ecdc4' }}>
+                    {log.text.split('exploit(')[1]?.split(')')[0] || ''}
+                </span>
+                <span style={{ color: '#00ff41' }}>) > </span>
+                <span style={{ color: '#ffffff' }}>
+                    {log.text.split('> ')[1] || ''}
+                </span>
+            </>
+        ) : log.text.startsWith('meterpreter >') ? (
+            <>
+                <span style={{ color: '#ff6b6b' }}>meterpreter</span>
+                <span style={{ color: '#00ff41' }}> > </span>
+                <span style={{ color: '#ffffff' }}>
+                    {log.text.replace('meterpreter > ', '')}
+                </span>
+            </>
+        ) : (
+            <span style={{ color: '#00ff41' }}>{log.text}</span>
+        )}
+    </span>
+) : (
+    // Original format for blue theme
+    <span style={{ color: log.color }}>{log.text}</span>
+)}
+
     </div>
 ))}
 
