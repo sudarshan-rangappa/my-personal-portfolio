@@ -327,7 +327,7 @@ const PortfolioTabs = () => {
 
     return (
         <section 
-            id="projects"
+            id="projects-section"
             className={`relative py-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             {/* Consistent container with other sections */}

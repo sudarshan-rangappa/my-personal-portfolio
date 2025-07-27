@@ -409,7 +409,7 @@ const HeroSection = () => {
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
 							<a
-								href="#projects"
+								href="#projects-section"
 								className="inline-flex items-center gap-3 px-5 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
 								style={{
 									backgroundColor: 'var(--theme-primary)',
@@ -429,7 +429,7 @@ const HeroSection = () => {
 							</a>
 
 							<a
-								href="#contact"
+								href="#contact-section"
 								className="inline-flex items-center gap-3 px-8 py-4 border-2 hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 group"
 								style={{
 									borderColor: 'var(--theme-primary)',
