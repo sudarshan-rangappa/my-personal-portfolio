@@ -201,29 +201,31 @@ const PortfolioTabs = () => {
     );
 
    const CertificateCard = ({ cert }) => {
-    const handleVerifyClick = () => {
-        if (cert.verifyLink) {
-            window.open(cert.verifyLink, '_blank');
-        }
-    };
+        const handleVerifyClick = () => {
+            if (cert.verifyLink) {
+                window.open(cert.verifyLink, '_blank');
+            }
+        };
 
     return (
-        <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+        <div className="group relative w-full h-full transform transition-all duration-300 hover:scale-105">
+            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] h-full flex flex-col">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-blue-500/5 to-purple-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-                <div className="relative p-6 z-10">
-                    <div className="flex items-start gap-4">
-                        <img
-                            src={cert.badge}
-                            alt={cert.title}
-                            className="w-16 h-16 rounded-lg object-cover"
-                        />
-                        <div className="flex-1">
+                <div className="relative p-6 z-10 flex-1 flex flex-col">
+                    <div className="flex items-start gap-4 flex-1">
+                        <div className="w-16 h-16 flex-shrink-0 bg-white/10 rounded-lg p-2 flex items-center justify-center">
+                            <img
+                                src={cert.badge}
+                                alt={cert.title}
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                        <div className="flex-1 flex flex-col">
                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{cert.title}</h3>
                             <p className="text-gray-600 dark:text-gray-300/80 text-sm mb-2">{cert.issuer}</p>
                             <p className="text-gray-500 dark:text-gray-400 text-xs mb-3">Issued: {cert.date}</p>
-                            <p className="text-gray-600 dark:text-gray-300/70 text-sm leading-relaxed mb-4">{cert.description}</p>
-                            <div className="flex items-center justify-between">
+                            <p className="text-gray-600 dark:text-gray-300/70 text-sm leading-relaxed mb-4 flex-1">{cert.description}</p>
+                            <div className="flex items-center justify-between mt-auto">
                                 <span className="text-xs text-gray-500 dark:text-gray-500 font-mono">ID: {cert.credentialId}</span>
                                 <button 
                                     onClick={handleVerifyClick}
@@ -350,7 +352,7 @@ const PortfolioTabs = () => {
                         }`}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                                 {displayedCertificates.map((cert, index) => (
-                                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                                    <div key={index} className="animate-fade-in h-full" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <CertificateCard cert={cert} />
                                     </div>
                                 ))}
