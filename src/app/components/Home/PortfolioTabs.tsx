@@ -9,68 +9,27 @@ const PortfolioTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [indicatorStyle, setIndicatorStyle] = useState({});
-    const [showAllProjects, setShowAllProjects] = useState(false);
     const [showAllCertificates, setShowAllCertificates] = useState(false);
     const [showAllTools, setShowAllTools] = useState(false);
     
-    // Mobile carousel states
-    const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    // Mobile carousel states (keeping for certificates)
     const [currentCertIndex, setCertCertIndex] = useState(0);
     
     const tabsRef = useRef([]);
 
-    // Your existing data arrays remain the same
+    // Single project data - replace with your actual project
     const projects = [
-        {
-            title: "IntervueAI",
-            description: "Real-time mock interviews with AI, no forms or clicks just natural, personalized conversations.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=IntervueAI",
-            liveDemo: "https://intervueai-io.vercel.app",
-            details: "/project/IntervueAI",
-            category: "AI Development"
-        },
-        {
-            title: "Blendy",
-            description: "A social app where you can connect in real-time, log in with one click, share moments, posts instantly.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=Blendy",
-            liveDemo: "https://blendy-download.vercel.app",
-            details: "/project/Blendy",
-            category: "Social Platform"
-        },
-        {
-            title: "WATCHit",
-            description: "A video streaming app made for easy, personal entertainment and everything you love to binge.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=WATCHit",
-            liveDemo: "https://watchit-1.onrender.com",
-            details: "/project/WATCHit",
-            category: "Streaming"
-        },
-        {
-            title: "SecureNet Monitor",
-            description: "Network monitoring tool for detecting security threats and anomalies in real-time.",
-            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=SecureNet+Monitor",
-            liveDemo: "#",
-            details: "/project/SecureNet",
-            category: "Network Security"
-        },
-        {
-            title: "ThreatHunter Dashboard",
-            description: "Interactive dashboard for threat hunting operations with advanced analytics.",
-            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=ThreatHunter",
-            liveDemo: "#",
-            details: "/project/ThreatHunter",
-            category: "SOC Tools"
-        },
-        {
-            title: "SOC Automation Tool",
-            description: "Automated incident response system for Security Operations Center workflows.",
-            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=SOC+Automation",
-            liveDemo: "#",
-            details: "/project/SOC",
-            category: "Automation"
-        }
-    ];
+    {
+        title: "Integrated Cyber Defence Environment",
+        description: "Integrated Cyber Defence Environment (ICDE) is a virtualized blue team lab simulating real-world enterprise security using AD, SIEM, SOAR, IDS, honeypots, and vulnerability management tools for proactive threat detection and response.",
+        image: "/icde.png",
+        githubLink: "https://github.com/sudarshan-rangappa/Integrated-Cyber-Defence-Environment.lab.git",
+        category: "LAB"
+    }
+];
 
+
+    // Your existing certificates and techStack arrays remain the same
     const certificates = [
         {
             title: "Certified Ethical Hacker (CEH)",
@@ -163,15 +122,7 @@ const PortfolioTabs = () => {
         }
     };
 
-    // Mobile navigation functions
-    const nextProject = () => {
-        setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
-    };
-
-    const prevProject = () => {
-        setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
-    };
-
+    // Mobile navigation functions for certificates
     const nextCert = () => {
         setCertCertIndex((prev) => (prev + 1) % certificates.length);
     };
@@ -180,59 +131,53 @@ const PortfolioTabs = () => {
         setCertCertIndex((prev) => (prev - 1 + certificates.length) % certificates.length);
     };
 
-    const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
     const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, 4);
     const displayedTools = showAllTools ? techStack : techStack.slice(0, 9); // 3x3 grid for mobile
 
     const ProjectCard = ({ project }) => (
-        <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
-                <div 
-                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                    style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
-                ></div>
-                <div className="relative p-5 z-10">
-                    <div className="relative overflow-hidden rounded-lg mb-4">
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-mono bg-black/70 text-white">
-                            {project.category}
-                        </div>
+    <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
+        <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
+            <div 
+                className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+            ></div>
+            <div className="relative p-5 z-10">
+                <div className="relative overflow-hidden rounded-lg mb-4">
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-mono bg-black/70 text-white">
+                        {project.category}
                     </div>
-                    <div className="space-y-3">
-                        <h3 className="text-xl font-semibold text-white">
-                            {project.title}
-                        </h3>
-                        <p className="text-white/70 text-sm leading-relaxed line-clamp-2">
-                            {project.description}
-                        </p>
-                        <div className="pt-4 flex items-center justify-between">
-                            <a
-                                href={project.liveDemo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center space-x-2 transition-colors duration-200 hover:scale-105"
-                                style={{ color: 'var(--theme-accent)' }}
-                            >
-                                <span className="text-sm font-medium">Live Demo</span>
-                                <ExternalLink className="w-4 h-4" />
-                            </a>
-                            <a
-                                href={project.details}
-                                className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:scale-105"
-                            >
-                                <span className="text-sm font-medium">Details</span>
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                        </div>
+                </div>
+                <div className="space-y-3">
+                    <h3 className="text-xl font-semibold text-white">
+                        {project.title}
+                    </h3>
+                    {/* Removed line-clamp-2 to show full description */}
+                    <p className="text-white/70 text-sm leading-relaxed">
+                        {project.description}
+                    </p>
+                    {/* Centered GitHub button since Live Demo is removed */}
+                    <div className="pt-4 flex justify-center">
+                        <a
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center space-x-2 px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:scale-105"
+                        >
+                            <span className="text-sm font-medium">View on GitHub</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    );
+    </div>
+);
+
 
     const CertificateCard = ({ cert }) => {
         const handleVerifyClick = () => {
@@ -432,75 +377,14 @@ const PortfolioTabs = () => {
 
                     {/* Content */}
                     <div className="relative">
-                        {/* Projects Tab */}
+                        {/* Projects Tab - Single Project, No Carousel Needed */}
                         <div className={`transition-all duration-500 ${
                             activeTab === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            {/* Mobile View - Single Project Carousel */}
-                            <div className="md:hidden mt-8">
-                                <div className="relative">
-                                    <ProjectCard project={projects[currentProjectIndex]} />
-                                    
-                                    {/* Navigation buttons */}
-                                    <div className="flex justify-between items-center mt-4">
-                                        <button
-                                            onClick={prevProject}
-                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
-                                            style={{
-                                                backgroundColor: 'var(--theme-primary)/20',
-                                                borderColor: 'var(--theme-accent)/30',
-                                                color: 'var(--theme-accent)'
-                                            }}
-                                        >
-                                            <ChevronLeft className="w-4 h-4" />
-                                            Previous
-                                        </button>
-                                        
-                                        <div className="flex gap-2">
-                                            {projects.map((_, index) => (
-                                                <div
-                                                    key={index}
-                                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                                        index === currentProjectIndex 
-                                                            ? 'bg-white' 
-                                                            : 'bg-white/30'
-                                                    }`}
-                                                />
-                                            ))}
-                                        </div>
-                                        
-                                        <button
-                                            onClick={nextProject}
-                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
-                                            style={{
-                                                backgroundColor: 'var(--theme-primary)/20',
-                                                borderColor: 'var(--theme-accent)/30',
-                                                color: 'var(--theme-accent)'
-                                            }}
-                                        >
-                                            Next
-                                            <ChevronRight className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                            <div className="flex justify-center mt-8">
+                                <div className="w-full max-w-md md:max-w-lg">
+                                    <ProjectCard project={projects[0]} />
                                 </div>
-                            </div>
-
-                            {/* Desktop View - Grid Layout */}
-                            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                                {displayedProjects.map((project, index) => (
-                                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                                        <ProjectCard project={project} />
-                                    </div>
-                                ))}
-                                {projects.length > 3 && (
-                                    <ViewMoreButton
-                                        onClick={() => setShowAllProjects(!showAllProjects)}
-                                        isExpanded={showAllProjects}
-                                        count={3}
-                                        total={projects.length}
-                                        type="Projects"
-                                    />
-                                )}
                             </div>
                         </div>
 
