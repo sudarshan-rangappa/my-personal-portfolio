@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown } from 'lucide-react';
+import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useTheme } from '@/app/hooks/useTheme';
 
@@ -12,9 +12,14 @@ const PortfolioTabs = () => {
     const [showAllProjects, setShowAllProjects] = useState(false);
     const [showAllCertificates, setShowAllCertificates] = useState(false);
     const [showAllTools, setShowAllTools] = useState(false);
+    
+    // Mobile carousel states
+    const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    const [currentCertIndex, setCertCertIndex] = useState(0);
+    
     const tabsRef = useRef([]);
 
-    // Enhanced projects data with cybersecurity focus
+    // Your existing data arrays remain the same
     const projects = [
         {
             title: "IntervueAI",
@@ -158,9 +163,26 @@ const PortfolioTabs = () => {
         }
     };
 
+    // Mobile navigation functions
+    const nextProject = () => {
+        setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+    };
+
+    const prevProject = () => {
+        setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    };
+
+    const nextCert = () => {
+        setCertCertIndex((prev) => (prev + 1) % certificates.length);
+    };
+
+    const prevCert = () => {
+        setCertCertIndex((prev) => (prev - 1 + certificates.length) % certificates.length);
+    };
+
     const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
     const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, 4);
-    const displayedTools = showAllTools ? techStack : techStack.slice(0, 16);
+    const displayedTools = showAllTools ? techStack : techStack.slice(0, 9); // 3x3 grid for mobile
 
     const ProjectCard = ({ project }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
@@ -266,6 +288,38 @@ const PortfolioTabs = () => {
         );
     };
 
+    // Mobile-optimized tool icon component
+    const MobileToolIcon = ({ tech }) => (
+        <div className="group relative transform transition-all duration-300 hover:scale-105">
+            <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_var(--theme-glow)]">
+                <div 
+                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+                ></div>
+                <div className="relative p-4 z-10">
+                    <div className="flex flex-col items-center gap-2">
+                        <div className="w-12 h-12 rounded-lg bg-white/10 p-2 flex items-center justify-center">
+                            <Image 
+                                src={tech.icon}
+                                width={32}
+                                height={32}
+                                alt={tech.name}
+                                className="object-contain"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                }}
+                            />
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-xs font-semibold text-white truncate">{tech.name}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
     const TechStackItem = ({ tech }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_var(--theme-glow)]">
@@ -330,7 +384,6 @@ const PortfolioTabs = () => {
             id="projects-section"
             className={`relative py-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
-            {/* Consistent container with other sections */}
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="text-center pb-10">
@@ -346,7 +399,6 @@ const PortfolioTabs = () => {
                 {/* Tabs */}
                 <div className="relative mb-12">
                     <div className="bg-black/30 backdrop-blur-lg border border-white/20 rounded-xl p-1 relative overflow-hidden">
-                        {/* Animated indicator */}
                         <div
                             className="absolute top-1 bottom-1 rounded-lg transition-all duration-300 ease-out"
                             style={{
@@ -384,7 +436,57 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                            {/* Mobile View - Single Project Carousel */}
+                            <div className="md:hidden mt-8">
+                                <div className="relative">
+                                    <ProjectCard project={projects[currentProjectIndex]} />
+                                    
+                                    {/* Navigation buttons */}
+                                    <div className="flex justify-between items-center mt-4">
+                                        <button
+                                            onClick={prevProject}
+                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
+                                            style={{
+                                                backgroundColor: 'var(--theme-primary)/20',
+                                                borderColor: 'var(--theme-accent)/30',
+                                                color: 'var(--theme-accent)'
+                                            }}
+                                        >
+                                            <ChevronLeft className="w-4 h-4" />
+                                            Previous
+                                        </button>
+                                        
+                                        <div className="flex gap-2">
+                                            {projects.map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                                        index === currentProjectIndex 
+                                                            ? 'bg-white' 
+                                                            : 'bg-white/30'
+                                                    }`}
+                                                />
+                                            ))}
+                                        </div>
+                                        
+                                        <button
+                                            onClick={nextProject}
+                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
+                                            style={{
+                                                backgroundColor: 'var(--theme-primary)/20',
+                                                borderColor: 'var(--theme-accent)/30',
+                                                color: 'var(--theme-accent)'
+                                            }}
+                                        >
+                                            Next
+                                            <ChevronRight className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Desktop View - Grid Layout */}
+                            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                                 {displayedProjects.map((project, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <ProjectCard project={project} />
@@ -406,7 +508,57 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                            {/* Mobile View - Single Certificate Carousel */}
+                            <div className="md:hidden mt-8">
+                                <div className="relative">
+                                    <CertificateCard cert={certificates[currentCertIndex]} />
+                                    
+                                    {/* Navigation buttons */}
+                                    <div className="flex justify-between items-center mt-4">
+                                        <button
+                                            onClick={prevCert}
+                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
+                                            style={{
+                                                backgroundColor: 'var(--theme-primary)/20',
+                                                borderColor: 'var(--theme-accent)/30',
+                                                color: 'var(--theme-accent)'
+                                            }}
+                                        >
+                                            <ChevronLeft className="w-4 h-4" />
+                                            Previous
+                                        </button>
+                                        
+                                        <div className="flex gap-2">
+                                            {certificates.map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                                        index === currentCertIndex 
+                                                            ? 'bg-white' 
+                                                            : 'bg-white/30'
+                                                    }`}
+                                                />
+                                            ))}
+                                        </div>
+                                        
+                                        <button
+                                            onClick={nextCert}
+                                            className="flex items-center gap-2 px-4 py-2 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105"
+                                            style={{
+                                                backgroundColor: 'var(--theme-primary)/20',
+                                                borderColor: 'var(--theme-accent)/30',
+                                                color: 'var(--theme-accent)'
+                                            }}
+                                        >
+                                            Next
+                                            <ChevronRight className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Desktop View - Grid Layout */}
+                            <div className="hidden md:grid grid-cols-2 gap-6 mt-8">
                                 {displayedCertificates.map((cert, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <CertificateCard cert={cert} />
@@ -428,8 +580,29 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-                                {displayedTools.map((tech, index) => (
+                            {/* Mobile View - 3x3 Grid with Icons Only */}
+                            <div className="md:hidden mt-8">
+                                <div className="grid grid-cols-3 gap-4">
+                                    {displayedTools.map((tech, index) => (
+                                        <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+                                            <MobileToolIcon tech={tech} />
+                                        </div>
+                                    ))}
+                                </div>
+                                {techStack.length > 9 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllTools(!showAllTools)}
+                                        isExpanded={showAllTools}
+                                        count={9}
+                                        total={techStack.length}
+                                        type="Tools"
+                                    />
+                                )}
+                            </div>
+
+                            {/* Desktop View - Full Info Grid */}
+                            <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+                                {(showAllTools ? techStack : techStack.slice(0, 16)).map((tech, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
                                         <TechStackItem tech={tech} />
                                     </div>
