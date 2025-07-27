@@ -2,56 +2,67 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import { useTheme } from '@/app/hooks/useTheme';
 
 const PortfolioTabs = () => {
+    const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [indicatorStyle, setIndicatorStyle] = useState({});
+    const [showAllProjects, setShowAllProjects] = useState(false);
+    const [showAllCertificates, setShowAllCertificates] = useState(false);
+    const [showAllTools, setShowAllTools] = useState(false);
     const tabsRef = useRef([]);
 
-    // Sample data - replace with your actual data
+    // Enhanced projects data with cybersecurity focus
     const projects = [
         {
             title: "IntervueAI",
             description: "Real-time mock interviews with AI, no forms or clicks just natural, personalized conversations.",
             image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=IntervueAI",
             liveDemo: "https://intervueai-io.vercel.app",
-            details: "/project/IntervueAI"
+            details: "/project/IntervueAI",
+            category: "AI Development"
         },
         {
             title: "Blendy",
             description: "A social app where you can connect in real-time, log in with one click, share moments, posts instantly.",
             image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=Blendy",
             liveDemo: "https://blendy-download.vercel.app",
-            details: "/project/Blendy"
+            details: "/project/Blendy",
+            category: "Social Platform"
         },
         {
             title: "WATCHit",
             description: "A video streaming app made for easy, personal entertainment and everything you love to binge.",
             image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=WATCHit",
             liveDemo: "https://watchit-1.onrender.com",
-            details: "/project/WATCHit"
+            details: "/project/WATCHit",
+            category: "Streaming"
         },
         {
             title: "SecureNet Monitor",
             description: "Network monitoring tool for detecting security threats and anomalies in real-time.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=SecureNet",
+            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=SecureNet+Monitor",
             liveDemo: "#",
-            details: "/project/SecureNet"
+            details: "/project/SecureNet",
+            category: "Network Security"
         },
         {
             title: "ThreatHunter Dashboard",
             description: "Interactive dashboard for threat hunting operations with advanced analytics.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=ThreatHunter",
+            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=ThreatHunter",
             liveDemo: "#",
-            details: "/project/ThreatHunter"
+            details: "/project/ThreatHunter",
+            category: "SOC Tools"
         },
         {
             title: "SOC Automation Tool",
             description: "Automated incident response system for Security Operations Center workflows.",
-            image: "https://via.placeholder.com/400x250/1e293b/60a5fa?text=SOC+Tool",
+            image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=SOC+Automation",
             liveDemo: "#",
-            details: "/project/SOC"
+            details: "/project/SOC",
+            category: "Automation"
         }
     ];
 
@@ -64,7 +75,6 @@ const PortfolioTabs = () => {
             description: "Comprehensive ethical hacking and penetration testing certification",
             badge: "/CEH_2E345519D3F7.png",
             verifyLink: "https://drive.google.com/file/d/1GkKMUh5BsZ0s9CIRRPoQTrq6M4IWyooC/view?usp=drive_link"
-
         },
         {
             title: "Open Source Intelligence",
@@ -77,19 +87,18 @@ const PortfolioTabs = () => {
         },
         {
             title: "Fundamentals Of Deep Learning",
-            issuer: "NVDIA",
+            issuer: "NVIDIA",
             date: "Dec 2023",
             credentialId: "N/A",
             description: "Introduction to deep learning concepts, neural networks, and model training using NVIDIA frameworks.",
             badge: "/Nvidia_logo.svg",
             verifyLink: "https://drive.google.com/file/d/1q0QfwW1JYuPWSss6OX26-n8HJlgc_c9Y/view?usp=drive_link"
-
         },
         {
             title: "Cyber Threat Intelligence 101",
             issuer: "ARCx",
             date: "July 2025",
-            credentialId: "N/a",
+            credentialId: "N/A",
             description: "Basics of cyber threat intelligence, including threat actor profiling, TTP analysis, and intelligence lifecycle.",
             badge: "/stream_photo_526acdcc_227edd04cfeacc0a75ae2719adf223f0f1fed6e3.webp",
             verifyLink: "https://drive.google.com/file/d/19yc59HfKLml43eWuXXbg-y_uOXn43_yu/view?usp=drive_link"
@@ -97,36 +106,36 @@ const PortfolioTabs = () => {
     ];
 
     const techStack = [
-        { name: "Aircrack-ng", category: "Wifi Cracking", level: 90, icon: "/aircrack-ng-logo.svg" },
-        { name: "Binwalk3", category: "Binary Analysis", level: 85, icon: "/binwalk3-logo.svg" },
-        { name: "Bloodhound", category: "Active Directory Enumeration", level: 80, icon: "/bloodhound-logo.svg" },
-        { name: "SQLMap", category: "DB Exploitation", level: 80, icon: "/sqlmap-logo.svg" },
+        { name: "Aircrack-ng", category: "WiFi Security", level: 90, icon: "/aircrack-ng-logo.svg" },
+        { name: "Binwalk", category: "Binary Analysis", level: 85, icon: "/binwalk3-logo.svg" },
+        { name: "BloodHound", category: "AD Enumeration", level: 80, icon: "/bloodhound-logo.svg" },
+        { name: "SQLMap", category: "Database Security", level: 80, icon: "/sqlmap-logo.svg" },
         { name: "Ghidra", category: "Reverse Engineering", level: 75, icon: "/ghidra-logo.svg" },
         { name: "Wireshark", category: "Network Analysis", level: 85, icon: "/wireshark-logo.svg" },
         { name: "Metasploit", category: "Exploitation", level: 80, icon: "/metasploit-framework-logo.svg" },
-        { name: "Burp Suite", category: "Web Exploitation", level: 75, icon: "/burpsuite-logo.svg" },
+        { name: "Burp Suite", category: "Web Security", level: 75, icon: "/burpsuite-logo.svg" },
         { name: "Nmap", category: "Network Scanning", level: 90, icon: "/nmap-logo.svg" },
         { name: "Splunk", category: "SIEM", level: 70, icon: "/splunk.svg" },
         { name: "Wazuh", category: "SIEM", level: 75, icon: "/WAZUH.png" },
         { name: "Docker", category: "Containerization", level: 80, icon: "/docker-icon.svg" },
         { name: "Maltego", category: "OSINT", level: 85, icon: "/maltego-logo.svg" },
-        { name: "theHarvester", category: "Enumeration", level: 90, icon: "/theharvester-logo.svg" },
-        { name: "sherlock", category: "Username Enumeration", level: 80, icon: "/sherlock-logo.svg" },
+        { name: "theHarvester", category: "Information Gathering", level: 90, icon: "/theharvester-logo.svg" },
+        { name: "Sherlock", category: "OSINT", level: 80, icon: "/sherlock-logo.svg" },
         { name: "Proxychains", category: "Anonymity", level: 85, icon: "/proxychains-ng-logo.svg" },
-        { name: "John The Ripper", category: "Bruteforce", level: 80, icon: "/john-the-ripper.svg" },
-        { name: "Hydra", category: "Password Cracking", level: 80, icon: "/hydra-logo.svg" },
-        { name: "HashCat", category: "Password Cracking", level: 80, icon: "/hashcat-logo.svg" },
-        { name: "BetterCap", category: "MiTM", level: 80, icon: "/bettercap-logo.svg" },
-        { name: "OpenVas", category: "Vulnerability Scanner", level: 80, icon: "/openvas.svg" },
+        { name: "John The Ripper", category: "Password Cracking", level: 80, icon: "/john-the-ripper.svg" },
+        { name: "Hydra", category: "Brute Force", level: 80, icon: "/hydra-logo.svg" },
+        { name: "HashCat", category: "Password Recovery", level: 80, icon: "/hashcat-logo.svg" },
+        { name: "BetterCAP", category: "Network Security", level: 80, icon: "/bettercap-logo.svg" },
+        { name: "OpenVAS", category: "Vulnerability Assessment", level: 80, icon: "/openvas.svg" },
         { name: "Nessus", category: "Vulnerability Scanner", level: 80, icon: "/nessus.svg" },
-        { name: "Autopsy", category: "Digital Forensic", level: 80, icon: "/autopsy-logo.svg" },
+        { name: "Autopsy", category: "Digital Forensics", level: 80, icon: "/autopsy-logo.svg" },
         { name: "Obsidian", category: "Documentation", level: 80, icon: "/2023_Obsidian_logo.svg" }
     ];
 
     const tabs = [
         { id: 0, name: "Projects", icon: Code },
-        { id: 1, name: "Certificates", icon: Award },
-        { id: 2, name: "Tools", icon: Wrench }
+        { id: 1, name: "Certifications", icon: Award },
+        { id: 2, name: "Arsenal", icon: Wrench }
     ];
 
     useEffect(() => {
@@ -149,10 +158,17 @@ const PortfolioTabs = () => {
         }
     };
 
+    const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
+    const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, 4);
+    const displayedTools = showAllTools ? techStack : techStack.slice(0, 16);
+
     const ProjectCard = ({ project }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+            <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
+                <div 
+                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+                ></div>
                 <div className="relative p-5 z-10">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                         <img
@@ -160,12 +176,15 @@ const PortfolioTabs = () => {
                             alt={project.title}
                             className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
                         />
+                        <div className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-mono bg-black/70 text-white">
+                            {project.category}
+                        </div>
                     </div>
                     <div className="space-y-3">
-                        <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        <h3 className="text-xl font-semibold text-white">
                             {project.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300/80 text-sm leading-relaxed line-clamp-2">
+                        <p className="text-white/70 text-sm leading-relaxed line-clamp-2">
                             {project.description}
                         </p>
                         <div className="pt-4 flex items-center justify-between">
@@ -173,14 +192,15 @@ const PortfolioTabs = () => {
                                 href={project.liveDemo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center space-x-2 text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200"
+                                className="inline-flex items-center space-x-2 transition-colors duration-200 hover:scale-105"
+                                style={{ color: 'var(--theme-accent)' }}
                             >
                                 <span className="text-sm font-medium">Live Demo</span>
                                 <ExternalLink className="w-4 h-4" />
                             </a>
                             <a
                                 href={project.details}
-                                className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 text-gray-800 dark:text-white/90 transition-all duration-200 hover:scale-105 active:scale-95"
+                                className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:scale-105"
                             >
                                 <span className="text-sm font-medium">Details</span>
                                 <ArrowRight className="w-4 h-4" />
@@ -188,67 +208,89 @@ const PortfolioTabs = () => {
                         </div>
                     </div>
                 </div>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/50 rounded-xl transition-colors duration-300"></div>
             </div>
         </div>
     );
 
-   const CertificateCard = ({ cert }) => {
-    const handleVerifyClick = () => {
-        if (cert.verifyLink) {
-            window.open(cert.verifyLink, '_blank');
-        }
-    };
+    const CertificateCard = ({ cert }) => {
+        const handleVerifyClick = () => {
+            if (cert.verifyLink) {
+                window.open(cert.verifyLink, '_blank');
+            }
+        };
 
-    return (
-        <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-blue-500/5 to-purple-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-                <div className="relative p-6 z-10">
-                    <div className="flex items-start gap-4">
-                        <img
-                            src={cert.badge}
-                            alt={cert.title}
-                            className="w-16 h-16 rounded-lg object-cover"
-                        />
-                        <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{cert.title}</h3>
-                            <p className="text-gray-600 dark:text-gray-300/80 text-sm mb-2">{cert.issuer}</p>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs mb-3">Issued: {cert.date}</p>
-                            <p className="text-gray-600 dark:text-gray-300/70 text-sm leading-relaxed mb-4">{cert.description}</p>
-                            <div className="flex items-center justify-between">
-                                <span className="text-xs text-gray-500 dark:text-gray-500 font-mono">ID: {cert.credentialId}</span>
-                                <button 
-                                    onClick={handleVerifyClick}
-                                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm transition-colors duration-200 cursor-pointer"
-                                >
-                                    View →
-                                </button>
+        return (
+            <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
+                <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
+                    <div 
+                        className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                        style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+                    ></div>
+                    <div className="relative p-6 z-10">
+                        <div className="flex items-start gap-4">
+                            <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                                <img
+                                    src={cert.badge}
+                                    alt={cert.title}
+                                    className="w-12 h-12 object-contain"
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.parentElement.innerHTML = '<div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">CERT</div>';
+                                    }}
+                                />
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-xl font-semibold text-white mb-2">{cert.title}</h3>
+                                <p className="text-white/70 text-sm mb-2">{cert.issuer}</p>
+                                <p className="text-white/50 text-xs mb-3">Issued: {cert.date}</p>
+                                <p className="text-white/60 text-sm leading-relaxed mb-4">{cert.description}</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs text-white/40 font-mono">ID: {cert.credentialId}</span>
+                                    <button 
+                                        onClick={handleVerifyClick}
+                                        className="text-sm font-medium px-3 py-1 rounded transition-all duration-200 hover:scale-105"
+                                        style={{ 
+                                            color: 'var(--theme-accent)',
+                                            backgroundColor: 'var(--theme-primary)/20',
+                                            border: `1px solid var(--theme-accent)/30`
+                                        }}
+                                    >
+                                        Verify →
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        );
+    };
 
-    const TechStackItem = ({ tech }: { tech: any}) => (
+    const TechStackItem = ({ tech }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-            <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)]">
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-                <div className="relative p-6 z-10">
-                    <div className="flex items-center gap-3 mb-3">
-                        {/* <span className="text-2xl">{tech.icon}</span> */}
-                        <Image 
-                            src={tech.icon}
-                            width={70}
-                            height={70}
-                            alt={`${tech.name}`}
-                        />
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tech.name}</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">{tech.category}</p>
+            <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_var(--theme-glow)]">
+                <div 
+                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+                ></div>
+                <div className="relative p-4 z-10">
+                    <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-lg bg-white/10 p-2 flex items-center justify-center">
+                            <Image 
+                                src={tech.icon}
+                                width={32}
+                                height={32}
+                                alt={tech.name}
+                                className="object-contain"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                }}
+                            />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-semibold text-white truncate">{tech.name}</h3>
+                            <p className="text-white/60 text-xs truncate">{tech.category}</p>
                         </div>
                     </div>
                 </div>
@@ -256,26 +298,62 @@ const PortfolioTabs = () => {
         </div>
     );
 
+    const ViewMoreButton = ({ onClick, isExpanded, count, total, type }) => (
+        <div className="col-span-full flex justify-center mt-6">
+            <button
+                onClick={onClick}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg backdrop-blur-lg border transition-all duration-300 hover:scale-105 active:scale-95 font-medium"
+                style={{
+                    backgroundColor: 'var(--theme-primary)/20',
+                    borderColor: 'var(--theme-accent)/30',
+                    color: 'var(--theme-accent)'
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'var(--theme-primary)/30';
+                    e.target.style.borderColor = 'var(--theme-accent)/50';
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'var(--theme-primary)/20';
+                    e.target.style.borderColor = 'var(--theme-accent)/30';
+                }}
+            >
+                <span>
+                    {isExpanded ? `Show Less` : `View More ${type} (${total - count} more)`}
+                </span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+            </button>
+        </div>
+    );
+
     return (
-        <section className={`relative py-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="md:px-[10%] px-[5%] w-full">
+        <section 
+            id="projects"
+            className={`relative py-20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
+            {/* Consistent container with other sections */}
+            <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="text-center pb-10">
-                    <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
-                        Portfolio Showcase
+                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Portfolio <span style={{ color: 'var(--theme-accent)' }}>Showcase</span>
                     </h2>
-                    <p className="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-                        Explore my journey through projects, certifications, and technical expertise. Each section represents a milestone in my continuous learning path.
+                    <p className="text-white/70 max-w-2xl mx-auto text-base leading-relaxed">
+                        Explore my journey through projects, certifications, and technical expertise. 
+                        Each section represents a milestone in my cybersecurity career path.
                     </p>
                 </div>
 
                 {/* Tabs */}
                 <div className="relative mb-12">
-                    <div className="bg-white/10 dark:bg-slate-900/50 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 rounded-xl p-1 relative">
+                    <div className="bg-black/30 backdrop-blur-lg border border-white/20 rounded-xl p-1 relative overflow-hidden">
                         {/* Animated indicator */}
                         <div
-                            className="absolute top-1 bottom-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg transition-all duration-300 ease-out"
-                            style={indicatorStyle}
+                            className="absolute top-1 bottom-1 rounded-lg transition-all duration-300 ease-out"
+                            style={{
+                                ...indicatorStyle,
+                                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-accent))`,
+                                boxShadow: `0 4px 15px var(--theme-glow)`
+                            }}
                         />
                         
                         <div className="flex relative z-10">
@@ -286,14 +364,14 @@ const PortfolioTabs = () => {
                                         key={tab.id}
                                         ref={el => tabsRef.current[index] = el}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`flex-1 flex items-center cursor-pointer justify-center gap-2 px-6 py-4 rounded-lg transition-all duration-300 ${
+                                        className={`flex-1 flex items-center justify-center gap-2 px-3 md:px-6 py-3 md:py-4 rounded-lg transition-all duration-300 font-medium ${
                                             activeTab === tab.id
-                                                ? 'text-gray-900 dark:text-white shadow-lg'
-                                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                                ? 'text-white shadow-lg'
+                                                : 'text-white/60 hover:text-white/90'
                                         }`}
                                     >
-                                        <Icon className="w-5 h-5" />
-                                        <span className="font-medium">{tab.name}</span>
+                                        <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                                        <span className="text-sm md:text-base">{tab.name}</span>
                                     </button>
                                 );
                             })}
@@ -307,11 +385,20 @@ const PortfolioTabs = () => {
                             activeTab === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                                {projects.map((project, index) => (
+                                {displayedProjects.map((project, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <ProjectCard project={project} />
                                     </div>
                                 ))}
+                                {projects.length > 3 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllProjects(!showAllProjects)}
+                                        isExpanded={showAllProjects}
+                                        count={3}
+                                        total={projects.length}
+                                        type="Projects"
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -320,11 +407,20 @@ const PortfolioTabs = () => {
                             activeTab === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                                {certificates.map((cert, index) => (
+                                {displayedCertificates.map((cert, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <CertificateCard cert={cert} />
                                     </div>
                                 ))}
+                                {certificates.length > 4 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllCertificates(!showAllCertificates)}
+                                        isExpanded={showAllCertificates}
+                                        count={4}
+                                        total={certificates.length}
+                                        type="Certificates"
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -332,12 +428,21 @@ const PortfolioTabs = () => {
                         <div className={`transition-all duration-500 ${
                             activeTab === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 h-full">
-                                {techStack.map((tech, index) => (
-                                    <div key={index} className="animate-fade-in h-full" style={{ animationDelay: `${index * 0.05}s` }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+                                {displayedTools.map((tech, index) => (
+                                    <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
                                         <TechStackItem tech={tech} />
                                     </div>
                                 ))}
+                                {techStack.length > 16 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllTools(!showAllTools)}
+                                        isExpanded={showAllTools}
+                                        count={16}
+                                        total={techStack.length}
+                                        type="Tools"
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>
