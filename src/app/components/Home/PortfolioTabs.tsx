@@ -7,6 +7,9 @@ const PortfolioTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const [indicatorStyle, setIndicatorStyle] = useState({});
+    const [showAllProjects, setShowAllProjects] = useState(false);
+    const [showAllCertificates, setShowAllCertificates] = useState(false);
+    const [showAllTools, setShowAllTools] = useState(false);
     const tabsRef = useRef([]);
 
     // Sample data - replace with your actual data
@@ -149,6 +152,10 @@ const PortfolioTabs = () => {
         }
     };
 
+    const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
+    const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, 4);
+    const displayedTools = showAllTools ? techStack : techStack.slice(0, 16);
+
     const ProjectCard = ({ project }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-white/5 dark:bg-slate-900/90 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]">
@@ -239,7 +246,6 @@ const PortfolioTabs = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
                 <div className="relative p-6 z-10">
                     <div className="flex items-center gap-3 mb-3">
-                        {/* <span className="text-2xl">{tech.icon}</span> */}
                         <Image 
                             src={tech.icon}
                             width={70}
@@ -253,6 +259,20 @@ const PortfolioTabs = () => {
                     </div>
                 </div>
             </div>
+        </div>
+    );
+
+    const ViewMoreButton = ({ onClick, isExpanded, count, total, type }) => (
+        <div className="col-span-full flex justify-center mt-6">
+            <button
+                onClick={onClick}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 border border-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+                <span className="font-medium">
+                    {isExpanded ? `Show Less` : `View More ${type} (${total - count} more)`}
+                </span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+            </button>
         </div>
     );
 
@@ -271,7 +291,7 @@ const PortfolioTabs = () => {
 
                 {/* Tabs */}
                 <div className="relative mb-12">
-                    <div className="bg-white/10 dark:bg-slate-900/50 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 rounded-xl p-1 relative">
+                    <div className="bg-white/10 dark:bg-slate-900/50 backdrop-blur-lg border border-gray-200/20 dark:border-white/10 rounded-xl p-1 relative overflow-hidden">
                         {/* Animated indicator */}
                         <div
                             className="absolute top-1 bottom-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg transition-all duration-300 ease-out"
@@ -286,14 +306,14 @@ const PortfolioTabs = () => {
                                         key={tab.id}
                                         ref={el => tabsRef.current[index] = el}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`flex-1 flex items-center cursor-pointer justify-center gap-2 px-6 py-4 rounded-lg transition-all duration-300 ${
+                                        className={`flex-1 flex items-center cursor-pointer justify-center gap-2 px-3 md:px-6 py-3 md:py-4 rounded-lg transition-all duration-300 ${
                                             activeTab === tab.id
                                                 ? 'text-gray-900 dark:text-white shadow-lg'
                                                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                         }`}
                                     >
-                                        <Icon className="w-5 h-5" />
-                                        <span className="font-medium">{tab.name}</span>
+                                        <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                                        <span className="font-medium text-sm md:text-base">{tab.name}</span>
                                     </button>
                                 );
                             })}
@@ -307,11 +327,20 @@ const PortfolioTabs = () => {
                             activeTab === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                                {projects.map((project, index) => (
+                                {displayedProjects.map((project, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <ProjectCard project={project} />
                                     </div>
                                 ))}
+                                {projects.length > 3 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllProjects(!showAllProjects)}
+                                        isExpanded={showAllProjects}
+                                        count={3}
+                                        total={projects.length}
+                                        type="Projects"
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -320,11 +349,20 @@ const PortfolioTabs = () => {
                             activeTab === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                                {certificates.map((cert, index) => (
+                                {displayedCertificates.map((cert, index) => (
                                     <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                                         <CertificateCard cert={cert} />
                                     </div>
                                 ))}
+                                {certificates.length > 4 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllCertificates(!showAllCertificates)}
+                                        isExpanded={showAllCertificates}
+                                        count={4}
+                                        total={certificates.length}
+                                        type="Certificates"
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -333,11 +371,20 @@ const PortfolioTabs = () => {
                             activeTab === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0'
                         }`}>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 h-full">
-                                {techStack.map((tech, index) => (
+                                {displayedTools.map((tech, index) => (
                                     <div key={index} className="animate-fade-in h-full" style={{ animationDelay: `${index * 0.05}s` }}>
                                         <TechStackItem tech={tech} />
                                     </div>
                                 ))}
+                                {techStack.length > 16 && (
+                                    <ViewMoreButton
+                                        onClick={() => setShowAllTools(!showAllTools)}
+                                        isExpanded={showAllTools}
+                                        count={16}
+                                        total={techStack.length}
+                                        type="Tools"
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>
