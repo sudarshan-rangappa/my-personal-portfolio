@@ -33,38 +33,39 @@ export function TimelineDemo() {
             technical.
           </p>
 
-          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+          <p className="mb-4 text-sm md:text-base font-normal text-neutral-500">
             This isn't just upskilling — it's survival training for the cyber
             jungle. And honestly? I'm having a blast.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <img
               src="https://i.postimg.cc/c1gGsnn1/Present3.jpg"
-              alt="startup template"
+              alt="Current cybersecurity workspace"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/BZxNcZWc/Present3.png"
-              alt="startup template"
+              alt="Lab setup and tools"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/WbLCTfVS/Present2.png"
-              alt="startup template"
+              alt="Research and documentation"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/6qmd6P2c/present4.jpg"
-              alt="startup template"
+              alt="Cybersecurity tools and environment"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
@@ -105,7 +106,7 @@ export function TimelineDemo() {
             built a strong circle I'll never forget.
           </p>
 
-          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+          <p className="mb-4 text-sm md:text-base font-normal text-neutral-500">
             It all wrapped with my Major Project — ICDE (Integrated Cyber
             Defense Environment) — a full-blown, self-built Cyber Defense Lab.
             But the real highlight? Pulling it off solo, late nights and all,
@@ -113,34 +114,34 @@ export function TimelineDemo() {
             dance.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <img
               src="https://i.postimg.cc/3Nffm96f/NFSU1.jpg"
-              alt="nfsu podium"
+              alt="NFSU podium achievement"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover object-top shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover object-top shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/DzXjsvfs/NFSU00.jpg"
-              alt="feature template"
+              alt="University campus"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/4dkqy7gj/NFSU3.jpg"
-              alt="classroom friends"
+              alt="Classroom with friends"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/Rh8cCfrH/nfsu4.jpg"
-              alt="ethnic day"
+              alt="University cultural event"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
@@ -180,40 +181,40 @@ export function TimelineDemo() {
             pizza-fueled brainstorming nights.
           </p>
 
-          <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
+          <p className="mb-4 text-sm md:text-base font-normal text-neutral-500">
             By the end of it, I had more than just a degree. I had memories, a
             crew, and the confidence to dive into cybersecurity — all thanks to
             those wild, wonderful BCU days.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <img
               src="https://i.postimg.cc/vB6JQJN8/BCU03.jpg"
-              alt="hero template"
+              alt="BCU graduation moment"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/BQcGPGQX/BCU04.jpg"
-              alt="feature template"
+              alt="College friends"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/bvFPYHYg/BCU00.jpg"
-              alt="bento template"
+              alt="Campus life"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
             <img
               src="https://i.postimg.cc/CKdy2BCq/BCU02.jpg"
-              alt="cards template"
+              alt="University memories"
               width={500}
               height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
+              className="w-full h-40 sm:h-32 md:h-44 lg:h-60 rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
@@ -224,14 +225,9 @@ export function TimelineDemo() {
   return (
     <div className="relative w-full overflow-clip">
       <style jsx global>{`
-        /* Override the original timeline gradient with theme-aware colors */
+        /* Theme-aware timeline gradient */
         .bg-gradient-to-t {
           background: linear-gradient(to top, var(--theme-primary, #3b82f6), var(--theme-accent, #60a5fa), transparent) !important;
-        }
-        
-        /* Ensure the animated line uses theme colors */
-        motion-div[style*="bg-gradient-to-t"] {
-          background: linear-gradient(to top, var(--theme-primary, #3b82f6) 0%, var(--theme-accent, #60a5fa) 10%, transparent 100%) !important;
         }
         
         /* Timeline dots with theme colors */
