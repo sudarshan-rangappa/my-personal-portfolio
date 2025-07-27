@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Timeline } from "../ui/timeline";
 
@@ -12,29 +13,29 @@ export function TimelineDemo() {
           </h2>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
-            These days, I’m living the cyber lab life — juggling blogs, LLM
+            These days, I'm living the cyber lab life — juggling blogs, LLM
             pentesting, and red team research like a caffeinated octopus. One
-            tab’s on PortSwigger, another’s on a CTF, and five more are
-            “research,” I swear.
+            tab's on PortSwigger, another's on a CTF, and five more are
+            "research," I swear.
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
-            Some nights I'm diving deep into Splunk logs, others I’m fuzzing
+            Some nights I'm diving deep into Splunk logs, others I'm fuzzing
             LLMs or breaking a new payload in Burp. Red team by day, blue team
-            by night — or maybe it’s the other way around. Who knows anymore?
+            by night — or maybe it's the other way around. Who knows anymore?
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
-            I’m also pushing updates to my GitHub, applying to gigs that excite
-            me, stalking threat intel feeds like it’s social media, and building
+            I'm also pushing updates to my GitHub, applying to gigs that excite
+            me, stalking threat intel feeds like it's social media, and building
             structured notes in Obsidian as I go. Down the line, I plan to turn
             those into a personal blog — something real, raw, and deeply
             technical.
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
-            This isn’t just upskilling — it’s survival training for the cyber
-            jungle. And honestly? I’m having a blast.
+            This isn't just upskilling — it's survival training for the cyber
+            jungle. And honestly? I'm having a blast.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <img
@@ -77,16 +78,16 @@ export function TimelineDemo() {
             NATIONAL FORENSIC SCIENCES UNIVERSITY
           </h2>
 
-          <h3 className="mb-1 text-2xl md:text-3xl font-medium text-[#40ffaa] tracking-wide">
+          <h3 className="mb-1 text-2xl md:text-3xl font-medium tracking-wide" style={{ color: 'var(--theme-accent, #40ffaa)' }}>
             Master of Science, Cyber Security
           </h3>
 
-          <h4 className="mb-2 text-xl md:text-2xl font-bold text-[#00e0ff]">
+          <h4 className="mb-2 text-xl md:text-2xl font-bold" style={{ color: 'var(--theme-primary, #00e0ff)' }}>
             CGPA: 8.24
           </h4>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
-            My two years at NFSU weren’t just about cybersecurity—they were
+            My two years at NFSU weren't just about cybersecurity—they were
             about people, night labs, bad coffee, inside jokes, and building
             something meaningful.
           </p>
@@ -101,7 +102,7 @@ export function TimelineDemo() {
             Semester 3 brought chaos in the best way: Cloud, IoT, Blockchain,
             and electives like Critical Infrastructure and Social Network
             Analysis. Somewhere between deadlines and pizza-fueled debates, I
-            built a strong circle I’ll never forget.
+            built a strong circle I'll never forget.
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-500">
@@ -153,11 +154,11 @@ export function TimelineDemo() {
             BENGALURU CITY UNIVERSITY
           </h2>
 
-          <h3 className="mb-1 text-2xl md:text-3xl font-medium text-[#40ffaa] tracking-wide">
+          <h3 className="mb-1 text-2xl md:text-3xl font-medium tracking-wide" style={{ color: 'var(--theme-accent, #40ffaa)' }}>
             Bachelor Of Computer Applications
           </h3>
 
-          <h4 className="mb-2 text-xl md:text-2xl font-bold text-[#00e0ff]">
+          <h4 className="mb-2 text-xl md:text-2xl font-bold" style={{ color: 'var(--theme-primary, #00e0ff)' }}>
             CGPA: 8.16
           </h4>
 
@@ -174,7 +175,7 @@ export function TimelineDemo() {
           </p>
 
           <p className="mb-2 text-sm md:text-base font-normal text-neutral-400">
-            It wasn’t just classrooms and labs. It was college fests, last-bench
+            It wasn't just classrooms and labs. It was college fests, last-bench
             jokes, photo sessions, group pranks, and those unforgettable 2 a.m.
             pizza-fueled brainstorming nights.
           </p>
@@ -219,8 +220,38 @@ export function TimelineDemo() {
       ),
     },
   ];
+
   return (
     <div className="relative w-full overflow-clip">
+      <style jsx global>{`
+        /* Override the original timeline gradient with theme-aware colors */
+        .bg-gradient-to-t {
+          background: linear-gradient(to top, var(--theme-primary, #3b82f6), var(--theme-accent, #60a5fa), transparent) !important;
+        }
+        
+        /* Ensure the animated line uses theme colors */
+        motion-div[style*="bg-gradient-to-t"] {
+          background: linear-gradient(to top, var(--theme-primary, #3b82f6) 0%, var(--theme-accent, #60a5fa) 10%, transparent 100%) !important;
+        }
+        
+        /* Timeline dots with theme colors */
+        .bg-neutral-200 {
+          background-color: var(--theme-accent, #e5e7eb) !important;
+        }
+        
+        .border-neutral-300 {
+          border-color: var(--theme-primary, #d1d5db) !important;
+        }
+        
+        /* Dark mode overrides */
+        .dark .bg-neutral-800 {
+          background-color: var(--theme-accent, #374151) !important;
+        }
+        
+        .dark .border-neutral-700 {
+          border-color: var(--theme-primary, #4b5563) !important;
+        }
+      `}</style>
       <Timeline data={data} />
     </div>
   );
