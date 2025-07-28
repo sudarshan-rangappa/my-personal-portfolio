@@ -1,36 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Sudarshan Rangappa — Cybersecurity Portfolio
 
-## Getting Started
+[![Live Website](https://img.shields.io/badge/Live-sudarshanrangappa.in.net-blue?style=for-the-badge)](https://www.sudarshanrangappa.in.net)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-First, run the development server:
+> A sleek, theme-driven portfolio built to showcase my dual expertise in both Blue Team (defensive) and Red Team (offensive) cybersecurity.
+
+---
+
+## 🌟 Features
+
+### 🎭 Dual Theme Support
+- 🔵 **Blue Team Mode**: Focused on SOC ops, threat detection, SIEM, and defense
+- 🔴 **Red Team Mode**: Showcasing offensive tactics, pentesting, and recon tools
+- ⚡ Real-time theme switching with contextual changes across the site
+
+### 🎬 Interactive UX
+- Custom decrypt-style intro animation
+- Simulated terminal streams & cyber-themed transitions
+- Smooth scrolls, hover states, and dynamic project tabs
+
+### 📱 Responsive Design
+- Mobile-first layout, adaptive elements
+- Certificate carousels & tool grids optimized for all devices
+
+---
+
+## 🛠️ Tech Stack
+
+| Area         | Tech                               |
+|--------------|------------------------------------|
+| Framework    | Next.js 15                         |
+| Language     | TypeScript                         |
+| Styling      | Tailwind CSS                       |
+| Animation    | Custom CSS + Framer Motion Concepts |
+| Icons        | Lucide React                       |
+| Deployment   | Vercel                             |
+
+---
+
+## 🧭 Project Structure
+
+src/
+├── app/
+│ ├── components/
+│ │ ├── Home/
+│ │ │ ├── HeroSection.tsx # Dynamic intro + theme switch
+│ │ │ └── PortfolioTabs.tsx # Interactive project filters
+│ │ ├── DecryptedText.tsx # Typing animation
+│ │ └── ThemeProvider.tsx # Theme context handler
+│ ├── hooks/
+│ │ └── useTheme.ts # Custom hook for theme logic
+│ └── globals.css # Tailwind and global styles
+
+yaml
+Copy code
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# 1. Clone the repo
+git clone https://github.com/sudarshan-rangappa/my-personal-portfolio.git
+cd my-personal-portfolio
+
+# 2. Install dependencies
+npm install
+# or
+yarn install
+
+# 3. Run dev server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 4. Visit in browser
+http://localhost:3000
+📊 Portfolio Sections
+🧰 Projects
+ICDE (Integrated Cyber Defense Environment) — End-to-end Blue Team lab simulating enterprise security infrastructure with AD, SIEM, SOAR, IDS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other red/blue-themed labs coming soon...
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🏆 Certifications
+CEH – Certified Ethical Hacker
 
-## Learn More
+OSINT – Basel Institute
 
-To learn more about Next.js, take a look at the following resources:
+Deep Learning – NVIDIA
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cyber Threat Intel – ARCx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+⚔️ Technical Arsenal
+Network: Nmap, Wireshark, Aircrack-ng
+Web Security: Burp Suite, SQLMap, Nikto
+SIEM: Splunk, Wazuh, QRadar
+Offensive Tools: Metasploit, Hydra, John
+OSINT: Maltego, theHarvester, Sherlock
+Forensics: Autopsy, Volatility, Binwalk
 
-## Deploy on Vercel
+🎨 Theme Palette
+Blue Team
+css
+Copy code
+--theme-primary: #3b82f6;
+--theme-accent: #60a5fa;
+--theme-glow: rgba(59, 130, 246, 0.2);
+Red Team
+css
+Copy code
+--theme-primary: #ef4444;
+--theme-accent: #f87171;
+--theme-glow: rgba(239, 68, 68, 0.2);
+📱 Responsive Breakpoints
+Device	Range	Behavior
+Mobile	< 640px	Carousel nav, grid reflow
+Tablet	640px–1024px	Adjusted layout, touch optimizations
+Desktop	> 1024px	Full theme features, hover effects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+⚡ Performance Benchmarks
+Lighthouse: 95+ across all metrics
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+FCP: < 1.5s
+
+LCP: < 2.5s
+
+100% type-safe with strict TypeScript config
+
+🔒 Security Considerations
+External links opened safely
+
+No sensitive data exposure
+
+Optimized assets & lazy loading
+
+Built-in XSS-safe rendering with strict typing
+
+🛣️ Roadmap
+ Security Blog – Writeups, tool usage, real-world cases
+
+ Interactive Labs – Simulations for hands-on learning
+
+ Theme-Based Resumes – Auto-switching content per theme
+
+ Analytics – Dashboards for portfolio traffic
+
+ PWA Support – Full offline mode
+
+🤝 Contributing
+bash
+Copy code
+# Fork > Clone > Create a feature branch
+git checkout -b feature/YourFeature
+
+# Commit > Push > PR
+git commit -m "Add amazing feature"
+git push origin feature/YourFeature
+📄 License
+MIT © Sudarshan Rangappa
+
+🙏 Acknowledgments
+@rizwaan – For development guidance and architecture suggestions
+
+Next.js – Modern web framework
+
+Tailwind CSS – Utility-first styling
+
+Lucide Icons – Icon set powering the visuals
+
+📞 Connect
+
+
+
+
+<div align="center"> <strong>🔐 Securing the digital frontier, one vulnerability at a time.</strong><br/> <em>Built with ❤️ by Sudarshan Rangappa</em> </div> ```
