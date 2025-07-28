@@ -1,10 +1,19 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export const ThemeContext = createContext();
+// Define the type for the theme context
+interface ThemeContextType {
+  theme: string;
+  setTheme: (theme: string) => void;
+  toggleTheme: () => void;
+}
 
-export const ThemeProvider = ({ children }: { children: any }) => {
+// Create context with proper typing
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState('blue');
+  
   useEffect(() => {
     const savedTheme = localStorage.getItem('team-theme');
     if (savedTheme && (savedTheme === 'blue' || savedTheme === 'red')) {
@@ -56,6 +65,7 @@ export const ThemeProvider = ({ children }: { children: any }) => {
     </ThemeContext.Provider>
   );
 };
+
 export const getThemeClasses = (theme: any) => {
   switch (theme) {
     case "red":
