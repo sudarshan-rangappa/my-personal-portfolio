@@ -80,21 +80,25 @@ MY-PERSONAL-PORTFOLIO/
 ## 🚀 Getting Started
 
  1. Clone the repo
-git clone https://github.com/sudarshan-rangappa/my-personal-portfolio.git
-cd my-personal-portfolio
+    `git clone https://github.com/sudarshan-rangappa/my-personal-portfolio.git`
+    `cd my-personal-portfolio`
 
  2. Install dependencies
-npm install
-# or
-yarn install
+    `npm install`
+
+            or
+
+    `yarn install`
 
  3. Run dev server
-npm run dev
-# or
-yarn dev
+    `npm run dev`
+            
+            or
+
+    `yarn dev`
 
  4. Open in browser
-http://localhost:3000
+`http://localhost:3000`
 
 
 ## 📊 Portfolio Sections
@@ -114,39 +118,28 @@ http://localhost:3000
 
 - Cyber Threat Intel – ARCx
 
-## 🎨 Theme Palette
-
-/* Blue Team */
---theme-primary: #3b82f6;
---theme-accent:  #60a5fa;
---theme-glow:    rgba(59, 130, 246, 0.2);
-
-/* Red Team */
---theme-primary: #ef4444;
---theme-accent:  #f87171;
---theme-glow:    rgba(239, 68, 68, 0.2);
-
-📱 Responsive Breakpoints
+## 📱 Responsive Breakpoints
 | Device  | Range        | Behavior                             |
 | ------- | ------------ | ------------------------------------ |
 | Mobile  | < 640px      | Carousel nav, grid reflow            |
 | Tablet  | 640px–1024px | Adjusted layout, touch optimizations |
 | Desktop | > 1024px     | Full theme features, hover effects   |
 
-## 🤝 Contributing
-# Fork → Clone → Create Feature Branch
-git checkout -b feature/YourFeature
+# 🤝 Contributing
+### Fork → Clone → Create Feature Branch
+`git checkout -b feature/YourFeature`
 
-# Commit → Push → PR
-git commit -m "Add amazing feature"
-git push origin feature/YourFeature
+### Commit → Push → PR
+`git commit -m "Add amazing feature"`
+`git push origin feature/YourFeature`
 
 
 # 📄 License
 MIT © Sudarshan Rangappa
 
 # 🙏 Acknowledgments
-- @rizwaan – Guidance and architecture advice
+
+## @rizwaan – Guidance and architecture advice
 
 - Next.js – Modern web framework
 
