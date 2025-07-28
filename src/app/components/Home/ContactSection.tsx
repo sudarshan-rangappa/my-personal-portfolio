@@ -1,23 +1,21 @@
 "use client";
 import React, { useState } from 'react';
-import { useTheme } from '@/app/hooks/useTheme';
 
 const ContactSection = () => {
-    const { theme } = useTheme();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: ''
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // Handle form submission here
         console.log('Form submitted:', formData);
@@ -144,7 +142,7 @@ const ContactSection = () => {
                             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
                         }}
                     >
-                        <div className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                                     Name
@@ -158,8 +156,8 @@ const ContactSection = () => {
                                     required
                                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300"
                                     style={{
-                                        focusRingColor: 'var(--theme-primary)'
-                                    }}
+                                        '--tw-ring-color': 'var(--theme-primary)'
+                                    } as React.CSSProperties}
                                     placeholder="Your name"
                                 />
                             </div>
@@ -177,8 +175,8 @@ const ContactSection = () => {
                                     required
                                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300"
                                     style={{
-                                        focusRingColor: 'var(--theme-primary)'
-                                    }}
+                                        '--tw-ring-color': 'var(--theme-primary)'
+                                    } as React.CSSProperties}
                                     placeholder="your.email@example.com"
                                 />
                             </div>
@@ -196,8 +194,8 @@ const ContactSection = () => {
                                     rows={5}
                                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 resize-none"
                                     style={{
-                                        focusRingColor: 'var(--theme-primary)'
-                                    }}
+                                        '--tw-ring-color': 'var(--theme-primary)'
+                                    } as React.CSSProperties}
                                     placeholder="Tell me about your project, security challenges, or just say hello..."
                                 />
                             </div>
@@ -208,20 +206,22 @@ const ContactSection = () => {
                                 style={{
                                     backgroundColor: 'var(--theme-primary)',
                                     boxShadow: '0 4px 20px var(--theme-glow)',
-                                    focusRingColor: 'var(--theme-glow)'
-                                }}
+                                    '--tw-ring-color': 'var(--theme-glow)'
+                                } as React.CSSProperties}
                                 onMouseEnter={(e) => {
-                                    e.target.style.backgroundColor = 'var(--theme-primary-dark)';
-                                    e.target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
+                                    const target = e.target as HTMLButtonElement;
+                                    target.style.backgroundColor = 'var(--theme-primary-dark)';
+                                    target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.target.style.backgroundColor = 'var(--theme-primary)';
-                                    e.target.style.boxShadow = '0 4px 20px var(--theme-glow)';
+                                    const target = e.target as HTMLButtonElement;
+                                    target.style.backgroundColor = 'var(--theme-primary)';
+                                    target.style.boxShadow = '0 4px 20px var(--theme-glow)';
                                 }}
                             >
                                 Send Message
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
