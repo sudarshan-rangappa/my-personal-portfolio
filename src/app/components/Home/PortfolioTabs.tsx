@@ -4,6 +4,40 @@ import { Code, Award, Wrench, ExternalLink, ArrowRight, ChevronDown, ChevronLeft
 import Image from 'next/image';
 import { useTheme } from '@/app/hooks/useTheme';
 
+// TypeScript interfaces
+interface Project {
+    title: string;
+    description: string;
+    image: string;
+    githubLink: string;
+    category: string;
+}
+
+interface Certificate {
+    title: string;
+    issuer: string;
+    date: string;
+    credentialId: string;
+    description: string;
+    badge: string;
+    verifyLink: string;
+}
+
+interface TechStack {
+    name: string;
+    category: string;
+    level: number;
+    icon: string;
+}
+
+interface ViewMoreButtonProps {
+    onClick: () => void;
+    isExpanded: boolean;
+    count: number;
+    total: number;
+    type: string;
+}
+
 const PortfolioTabs = () => {
     const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState(0);
@@ -15,22 +49,21 @@ const PortfolioTabs = () => {
     // Mobile carousel states (keeping for certificates)
     const [currentCertIndex, setCertCertIndex] = useState(0);
     
-    const tabsRef = useRef([]);
+    const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
     // Single project data - replace with your actual project
-    const projects = [
-    {
-        title: "Integrated Cyber Defence Environment",
-        description: "Integrated Cyber Defence Environment (ICDE) is a virtualized blue team lab simulating real-world enterprise security using AD, SIEM, SOAR, IDS, honeypots, and vulnerability management tools for proactive threat detection and response.",
-        image: "/icde.png",
-        githubLink: "https://github.com/sudarshan-rangappa/Integrated-Cyber-Defence-Environment.lab.git",
-        category: "LAB"
-    }
-];
-
+    const projects: Project[] = [
+        {
+            title: "Integrated Cyber Defence Environment",
+            description: "Integrated Cyber Defence Environment (ICDE) is a virtualized blue team lab simulating real-world enterprise security using AD, SIEM, SOAR, IDS, honeypots, and vulnerability management tools for proactive threat detection and response.",
+            image: "/icde.png",
+            githubLink: "https://github.com/sudarshan-rangappa/Integrated-Cyber-Defence-Environment.lab.git",
+            category: "LAB"
+        }
+    ];
 
     // Your existing certificates and techStack arrays remain the same
-    const certificates = [
+    const certificates: Certificate[] = [
         {
             title: "Certified Ethical Hacker (CEH)",
             issuer: "EC-Council",
@@ -69,7 +102,7 @@ const PortfolioTabs = () => {
         }
     ];
 
-    const techStack = [
+    const techStack: TechStack[] = [
         { name: "Aircrack-ng", category: "WiFi Security", level: 90, icon: "/aircrack-ng-logo.svg" },
         { name: "Binwalk", category: "Binary Analysis", level: 85, icon: "/binwalk3-logo.svg" },
         { name: "BloodHound", category: "AD Enumeration", level: 80, icon: "/bloodhound-logo.svg" },
@@ -134,52 +167,51 @@ const PortfolioTabs = () => {
     const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, 4);
     const displayedTools = showAllTools ? techStack : techStack.slice(0, 9); // 3x3 grid for mobile
 
-    const ProjectCard = ({ project }) => (
-    <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
-        <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
-            <div 
-                className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
-            ></div>
-            <div className="relative p-5 z-10">
-                <div className="relative overflow-hidden rounded-lg mb-4">
-                    <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-mono bg-black/70 text-white">
-                        {project.category}
+    const ProjectCard = ({ project }: { project: Project }) => (
+        <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
+            <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_0_30px_var(--theme-glow)]">
+                <div 
+                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(135deg, var(--theme-primary)/20, var(--theme-accent)/10)` }}
+                ></div>
+                <div className="relative p-5 z-10">
+                    <div className="relative overflow-hidden rounded-lg mb-4">
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-mono bg-black/70 text-white">
+                            {project.category}
+                        </div>
                     </div>
-                </div>
-                <div className="space-y-3">
-                    <h3 className="text-xl font-semibold text-white">
-                        {project.title}
-                    </h3>
-                    {/* Removed line-clamp-2 to show full description */}
-                    <p className="text-white/70 text-sm leading-relaxed">
-                        {project.description}
-                    </p>
-                    {/* Centered GitHub button since Live Demo is removed */}
-                    <div className="pt-4 flex justify-center">
-                        <a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center space-x-2 px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:scale-105"
-                        >
-                            <span className="text-sm font-medium">View on GitHub</span>
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
+                    <div className="space-y-3">
+                        <h3 className="text-xl font-semibold text-white">
+                            {project.title}
+                        </h3>
+                        {/* Removed line-clamp-2 to show full description */}
+                        <p className="text-white/70 text-sm leading-relaxed">
+                            {project.description}
+                        </p>
+                        {/* Centered GitHub button since Live Demo is removed */}
+                        <div className="pt-4 flex justify-center">
+                            <a
+                                href={project.githubLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center space-x-2 px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:scale-105"
+                            >
+                                <span className="text-sm font-medium">View on GitHub</span>
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
 
-
-    const CertificateCard = ({ cert }) => {
+    const CertificateCard = ({ cert }: { cert: Certificate }) => {
         const handleVerifyClick = () => {
             if (cert.verifyLink) {
                 window.open(cert.verifyLink, '_blank');
@@ -201,8 +233,11 @@ const PortfolioTabs = () => {
                                     alt={cert.title}
                                     className="w-12 h-12 object-contain"
                                     onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.parentElement.innerHTML = '<div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">CERT</div>';
+                                        const target = e.target as HTMLImageElement;
+                                        target.style.display = 'none';
+                                        if (target.parentElement) {
+                                            target.parentElement.innerHTML = '<div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">CERT</div>';
+                                        }
                                     }}
                                 />
                             </div>
@@ -234,7 +269,7 @@ const PortfolioTabs = () => {
     };
 
     // Mobile-optimized tool icon component
-    const MobileToolIcon = ({ tech }) => (
+    const MobileToolIcon = ({ tech }: { tech: TechStack }) => (
         <div className="group relative transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_var(--theme-glow)]">
                 <div 
@@ -251,8 +286,11 @@ const PortfolioTabs = () => {
                                 alt={tech.name}
                                 className="object-contain"
                                 onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                    const target = e.target as HTMLImageElement;
+                                    target.style.display = 'none';
+                                    if (target.parentElement) {
+                                        target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                    }
                                 }}
                             />
                         </div>
@@ -265,7 +303,7 @@ const PortfolioTabs = () => {
         </div>
     );
 
-    const TechStackItem = ({ tech }) => (
+    const TechStackItem = ({ tech }: { tech: TechStack }) => (
         <div className="group relative w-full transform transition-all duration-300 hover:scale-105">
             <div className="relative overflow-hidden rounded-xl bg-black/20 backdrop-blur-lg border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_var(--theme-glow)]">
                 <div 
@@ -282,8 +320,11 @@ const PortfolioTabs = () => {
                                 alt={tech.name}
                                 className="object-contain"
                                 onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                    const target = e.target as HTMLImageElement;
+                                    target.style.display = 'none';
+                                    if (target.parentElement) {
+                                        target.parentElement.innerHTML = `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">${tech.name.charAt(0)}</div>`;
+                                    }
                                 }}
                             />
                         </div>
@@ -297,7 +338,7 @@ const PortfolioTabs = () => {
         </div>
     );
 
-    const ViewMoreButton = ({ onClick, isExpanded, count, total, type }) => (
+    const ViewMoreButton = ({ onClick, isExpanded, count, total, type }: ViewMoreButtonProps) => (
         <div className="col-span-full flex justify-center mt-6">
             <button
                 onClick={onClick}
@@ -308,12 +349,14 @@ const PortfolioTabs = () => {
                     color: 'var(--theme-accent)'
                 }}
                 onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = 'var(--theme-primary)/30';
-                    e.target.style.borderColor = 'var(--theme-accent)/50';
+                    const target = e.target as HTMLButtonElement;
+                    target.style.backgroundColor = 'var(--theme-primary)/30';
+                    target.style.borderColor = 'var(--theme-accent)/50';
                 }}
                 onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = 'var(--theme-primary)/20';
-                    e.target.style.borderColor = 'var(--theme-accent)/30';
+                    const target = e.target as HTMLButtonElement;
+                    target.style.backgroundColor = 'var(--theme-primary)/20';
+                    target.style.borderColor = 'var(--theme-accent)/30';
                 }}
             >
                 <span>
