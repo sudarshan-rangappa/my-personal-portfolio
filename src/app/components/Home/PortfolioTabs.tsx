@@ -402,7 +402,7 @@ const PortfolioTabs = () => {
                                 return (
                                     <button
                                         key={tab.id}
-                                        ref={el => tabsRef.current[index] = el}
+                                        ref={(el) => { tabsRef.current[index] = el; }}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`flex-1 flex items-center justify-center gap-2 px-3 md:px-6 py-3 md:py-4 rounded-lg transition-all duration-300 font-medium ${
                                             activeTab === tab.id
