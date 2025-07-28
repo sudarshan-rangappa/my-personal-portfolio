@@ -54,6 +54,18 @@ const HeroSection = () => {
         blue: "Securing enterprise environments with advanced SIEM and SOC operations",
         red: "Exposing vulnerabilities through ethical hacking and penetration testing"
     };
+
+    // Theme-specific resume configuration
+    const themeResumes: Record<ThemeType, { filename: string; displayText: string }> = {
+        blue: {
+            filename: "Assets/resume-blue-team.pdf",
+            displayText: "Blue Resume"
+        },
+        red: {
+            filename: "Assets/resume-red-team.pdf", 
+            displayText: "Red Resume"
+        }
+    };
     
     const getCurrentSubtitles = (): string[] => {
         return themeSubtitles[theme as ThemeType] || themeSubtitles.blue;
@@ -61,6 +73,10 @@ const HeroSection = () => {
 
     const getCurrentTagline = (): string => {
         return themeTaglines[theme as ThemeType] || themeTaglines.blue;
+    };
+
+    const getCurrentResume = () => {
+        return themeResumes[theme as ThemeType] || themeResumes.blue;
     };
 
     // Theme-specific log lines
@@ -458,7 +474,7 @@ const HeroSection = () => {
                                 text={getCurrentTagline()}
                                 speed={20}
                                 sequential={true}
-								revealDirection = 'center'
+                                revealDirection="center"
                                 animateOn={"view"}
                             />
                         </div>
@@ -494,12 +510,13 @@ const HeroSection = () => {
                                 Contact Me
                             </a>
 
+                            {/* Enhanced Resume Download Button with Theme-Specific Logic */}
                             <a
-                                href="Assets/Sudarshan-Rangappa_resume.pdf"
+                                href={getCurrentResume().filename}
                                 download
                                 data-variant="primary"
-                                className="inline-flex items-center gap-3 px-8 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
-                                aria-label="Download Sudarshan Rangappa's Resume"
+                                className="inline-flex items-center gap-3 px-8 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group relative overflow-hidden"
+                                aria-label={`Download ${getCurrentResume().displayText}`}
                                 style={{
                                     backgroundColor: 'var(--theme-primary)',
                                     boxShadow: '0 4px 20px var(--theme-glow)'
@@ -507,8 +524,17 @@ const HeroSection = () => {
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
                             >
-                                <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                                Download Resume
+                                {/* Theme-specific background animation */}
+                                <div
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                                    style={{
+                                        background: theme === 'red' 
+                                            ? 'linear-gradient(45deg, #dc2626, #b91c1c)'
+                                            : 'linear-gradient(45deg, #2563eb, #1d4ed8)'
+                                    }}
+                                />
+                                <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform relative z-10" />
+                                <span className="relative z-10">{getCurrentResume().displayText}</span>
                             </a>
                         </div>
                         <div
