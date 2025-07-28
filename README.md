@@ -79,118 +79,83 @@ MY-PERSONAL-PORTFOLIO/
 
 ## 🚀 Getting Started
 
-```bash
-# 1. Clone the repo
+ 1. Clone the repo
 git clone https://github.com/sudarshan-rangappa/my-personal-portfolio.git
 cd my-personal-portfolio
 
-# 2. Install dependencies
+ 2. Install dependencies
 npm install
 # or
 yarn install
 
-# 3. Run dev server
+ 3. Run dev server
 npm run dev
 # or
 yarn dev
 
-# 4. Visit in browser
+ 4. Open in browser
 http://localhost:3000
-📊 Portfolio Sections
+
+
+## 📊 Portfolio Sections
 🧰 Projects
-ICDE (Integrated Cyber Defense Environment) — End-to-end Blue Team lab simulating enterprise security infrastructure with AD, SIEM, SOAR, IDS
 
-Other red/blue-themed labs coming soon...
+- ICDE (Integrated Cyber Defense Environment) — End-to-end Blue Team lab simulating enterprise security with AD, SIEM, SOAR, IDS
 
-🏆 Certifications
-CEH – Certified Ethical Hacker
+- More red/blue-themed labs coming soon...
 
-OSINT – Basel Institute
+## 🏆 Certifications
 
-Deep Learning – NVIDIA
+- CEH – Certified Ethical Hacker
 
-Cyber Threat Intel – ARCx
+- OSINT – Basel Institute
 
-⚔️ Technical Arsenal
-Network: Nmap, Wireshark, Aircrack-ng
-Web Security: Burp Suite, SQLMap, Nikto
-SIEM: Splunk, Wazuh, QRadar
-Offensive Tools: Metasploit, Hydra, John
-OSINT: Maltego, theHarvester, Sherlock
-Forensics: Autopsy, Volatility, Binwalk
+- Deep Learning – NVIDIA
 
-🎨 Theme Palette
-Blue Team
-css
-Copy code
+- Cyber Threat Intel – ARCx
+
+## 🎨 Theme Palette
+
+/* Blue Team */
 --theme-primary: #3b82f6;
---theme-accent: #60a5fa;
---theme-glow: rgba(59, 130, 246, 0.2);
-Red Team
-css
-Copy code
+--theme-accent:  #60a5fa;
+--theme-glow:    rgba(59, 130, 246, 0.2);
+
+/* Red Team */
 --theme-primary: #ef4444;
---theme-accent: #f87171;
---theme-glow: rgba(239, 68, 68, 0.2);
+--theme-accent:  #f87171;
+--theme-glow:    rgba(239, 68, 68, 0.2);
+
 📱 Responsive Breakpoints
-Device	Range	Behavior
-Mobile	< 640px	Carousel nav, grid reflow
-Tablet	640px–1024px	Adjusted layout, touch optimizations
-Desktop	> 1024px	Full theme features, hover effects
+| Device  | Range        | Behavior                             |
+| ------- | ------------ | ------------------------------------ |
+| Mobile  | < 640px      | Carousel nav, grid reflow            |
+| Tablet  | 640px–1024px | Adjusted layout, touch optimizations |
+| Desktop | > 1024px     | Full theme features, hover effects   |
 
-⚡ Performance Benchmarks
-Lighthouse: 95+ across all metrics
-
-FCP: < 1.5s
-
-LCP: < 2.5s
-
-100% type-safe with strict TypeScript config
-
-🔒 Security Considerations
-External links opened safely
-
-No sensitive data exposure
-
-Optimized assets & lazy loading
-
-Built-in XSS-safe rendering with strict typing
-
-🛣️ Roadmap
- Security Blog – Writeups, tool usage, real-world cases
-
- Interactive Labs – Simulations for hands-on learning
-
- Theme-Based Resumes – Auto-switching content per theme
-
- Analytics – Dashboards for portfolio traffic
-
- PWA Support – Full offline mode
-
-🤝 Contributing
-bash
-Copy code
-# Fork > Clone > Create a feature branch
+## 🤝 Contributing
+# Fork → Clone → Create Feature Branch
 git checkout -b feature/YourFeature
 
-# Commit > Push > PR
+# Commit → Push → PR
 git commit -m "Add amazing feature"
 git push origin feature/YourFeature
-📄 License
+
+
+# 📄 License
 MIT © Sudarshan Rangappa
 
-🙏 Acknowledgments
-@rizwaan – For development guidance and architecture suggestions
+# 🙏 Acknowledgments
+- @rizwaan – Guidance and architecture advice
 
-Next.js – Modern web framework
+- Next.js – Modern web framework
 
-Tailwind CSS – Utility-first styling
+- Tailwind CSS – Utility-first styling
 
-Lucide Icons – Icon set powering the visuals
+- Lucide Icons – Clean, open-source icon set
 
-📞 Connect
-
-
-
-
-<div align="center"> <strong>🔐 Securing the digital frontier, one vulnerability at a time.</strong><br/> <em>Built with ❤️ by Sudarshan Rangappa</em> </div> ```
+# 📞 Connect
+<div align="center">
+  <strong>🔐 Securing the digital frontier, one vulnerability at a time.</strong><br/>
+  <em>Built with ❤️ by Sudarshan Rangappa</em>
+</div>
