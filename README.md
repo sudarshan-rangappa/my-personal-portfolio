@@ -40,24 +40,42 @@
 
 ---
 
-## 🧭 Project Structure
+## 📁 Project Structure
 
-src/
-├── app/
-│ ├── components/
-│ │ ├── Home/
-│ │ │ ├── HeroSection.tsx # Dynamic intro + theme switch
-│ │ │ └── PortfolioTabs.tsx # Interactive project filters
-│ │ ├── DecryptedText.tsx # Typing animation
-│ │ └── ThemeProvider.tsx # Theme context handler
-│ ├── hooks/
-│ │ └── useTheme.ts # Custom hook for theme logic
-│ └── globals.css # Tailwind and global styles
-
-yaml
-Copy code
-
----
+```
+MY-PERSONAL-PORTFOLIO/
+├── .next/
+├── node_modules/
+├── public/
+├── src/
+│   └── app/
+│       ├── components/
+│       │   ├── Home/
+│       │   │   ├── ContactSection.tsx
+│       │   │   ├── HeroSection.tsx
+│       │   │   ├── PortfolioTabs.tsx
+│       │   │   └── Timeline.tsx
+│       │   └── ui/
+│       │       ├── timeline.tsx
+│       │       ├── DecryptedText.tsx
+│       │       ├── Navbar.tsx
+│       │       └── ThemeProvider.tsx
+│       ├── hooks/
+│       │   └── useTheme.ts
+│       ├── lib/
+│       ├── favicon.ico
+│       ├── globals.css
+│       ├── layout.tsx
+│       └── page.tsx
+├── .gitignore
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
+```
 
 ## 🚀 Getting Started
 
