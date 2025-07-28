@@ -1,26 +1,32 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Shield, Mail, Download, Search, User } from "lucide-react";
+import { Shield, Mail, Download, Search } from "lucide-react";
 import { useTheme } from "@/app/hooks/useTheme";
 import DecryptedText from "../DecryptedText";
 
+interface AnimatedLog {
+	id: number;
+	text: string;
+	left: string;
+	animationDuration: string;
+	animationDelay: string;
+	color: string;
+	lane: number;
+	createdAt?: number;
+}
+
+type ThemeType = 'blue' | 'red';
+
 const HeroSection = () => {
-	const { theme } = useTheme();
+	// Handle potential undefined theme context
+	const themeHook = useTheme() as { theme?: string } | undefined;
+	const theme = themeHook?.theme || 'blue'; // Fallback to 'blue' if theme is undefined
 	const [typedText, setTypedText] = useState("");
 	const [isVisible, setIsVisible] = useState(false);
-	const [animateddLogs, setAnimateddLogs] = useState<Array<{
-		id: number;
-		text: string;
-		left: string;
-		animationDuration: string;
-		animationDelay: string;
-		color: string;
-		lane: number;
-		createdAt?: number;
-	}>>([]);
+	const [animateddLogs, setAnimateddLogs] = useState<AnimatedLog[]>([]);
 
 	// Theme-specific subtitles
-	const themeSubtitles = {
+	const themeSubtitles: Record<ThemeType, string[]> = {
 		blue: [
 			"Cybersecurity Enthusiast",
 			"Blue Team Specialist", 
@@ -43,12 +49,12 @@ const HeroSection = () => {
 		]
 	};
 	
-	const getCurrentSubtitles = () => {
-		return themeSubtitles[theme] || themeSubtitles.blue; // fallback to blue if theme not found
+	const getCurrentSubtitles = (): string[] => {
+		return themeSubtitles[theme as ThemeType] || themeSubtitles.blue;
 	};
 
 	// Theme-specific log lines
-	const themeLogLines = {
+	const themeLogLines: Record<ThemeType, string[]> = {
 		blue: [
 			"[ALERT] Critical: Unauthenticated RCE attempt on server SRV01 from 10.211.55.3",
 			"[INFO] System integrity scan initiated for all endpoints.",
@@ -71,49 +77,47 @@ const HeroSection = () => {
 			"[WARN] Unauthorized software 'unknown_p2p_client.exe' detected on user 'j.doe' machine.",
 			"[INFO] Security awareness training module completed by 92% of employees this quarter."
 		],
-	red: [
-    // Network Reconnaissance
-    "root@kali:~# nmap -sS -A 192.168.1.0/24",
-    "root@kali:~# nmap -p- --min-rate=1000 -T4 target.corp.com",
-    "root@kali:~# burpsuite -config config.json",
-    "root@kali:~# gobuster dir -u http://target.corp.com -w /usr/share/wordlists/common.txt",
-    "root@kali:~# nikto -h http://192.168.1.50",
-    "root@kali:~# sqlmap -u \"http://target.corp.com/login.php\" --dbs",
-    "root@kali:~# wfuzz -c -z file,/usr/share/seclists/common.txt -u http://target.corp.com/FUZZ",
-    "root@kali:~# msfconsole -q",
-    "msf6 > use exploit/windows/smb/ms17_010_eternalblue",
-    "msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 192.168.1.50",
-    "meterpreter > hashdump",
-    "meterpreter > getuid",
-    "meterpreter > sysinfo",
-    "root@kali:~# bloodhound-python -u admin -p password -ns 192.168.1.10 -d domain.local",
-    "root@kali:~# impacket-secretsdump CORP/administrator@192.168.1.50",
-    "root@kali:~# crackmapexec smb 192.168.1.0/24 -u admin -p password123",
-    "root@kali:~# evil-winrm -i 192.168.1.55 -u administrator -p password123",
-    "root@kali:~# john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt",
-    "root@kali:~# hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.50",
-    "root@kali:~# hashcat -m 0 -a 3 hash.txt ?a?a?a?a",
-    "root@kali:~# aircrack-ng -w wordlist.txt -b 00:14:6C:7E:40:80 wlan0",
-    "root@kali:~# maltego -t target.domain.com",
-    "root@kali:~# theharvester -d target.com -b google",
-    "root@kali:~# sherlock Rangappa",
-    "root@kali:~# subfinder -d target.corp.com | httpx -silent",
-    "root@kali:~# bettercap -X -T 192.168.1.1",
-    "root@kali:~# responder -I eth0 -wrf",
-    "root@kali:~# proxychains nmap -sT -Pn 192.168.1.1",   
-    "root@kali:~# binwalk firmware.bin",
-    "root@kali:~# ghidra",  
-    "root@kali:~# enum4linux -a 192.168.1.50",
-    "root@kali:~# searchsploit apache 2.4.6"
-]
-
+		red: [
+			"root@kali:~# nmap -sS -A 192.168.1.0/24",
+			"root@kali:~# nmap -p- --min-rate=1000 -T4 target.corp.com",
+			"root@kali:~# burpsuite -config config.json",
+			"root@kali:~# gobuster dir -u http://target.corp.com -w /usr/share/wordlists/common.txt",
+			"root@kali:~# nikto -h http://192.168.1.50",
+			"root@kali:~# sqlmap -u \"http://target.corp.com/login.php\" --dbs",
+			"root@kali:~# wfuzz -c -z file,/usr/share/seclists/common.txt -u http://target.corp.com/FUZZ",
+			"root@kali:~# msfconsole -q",
+			"msf6 > use exploit/windows/smb/ms17_010_eternalblue",
+			"msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 192.168.1.50",
+			"meterpreter > hashdump",
+			"meterpreter > getuid",
+			"meterpreter > sysinfo",
+			"root@kali:~# bloodhound-python -u admin -p password -ns 192.168.1.10 -d domain.local",
+			"root@kali:~# impacket-secretsdump CORP/administrator@192.168.1.50",
+			"root@kali:~# crackmapexec smb 192.168.1.0/24 -u admin -p password123",
+			"root@kali:~# evil-winrm -i 192.168.1.55 -u administrator -p password123",
+			"root@kali:~# john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt",
+			"root@kali:~# hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.50",
+			"root@kali:~# hashcat -m 0 -a 3 hash.txt ?a?a?a?a",
+			"root@kali:~# aircrack-ng -w wordlist.txt -b 00:14:6C:7E:40:80 wlan0",
+			"root@kali:~# maltego -t target.domain.com",
+			"root@kali:~# theharvester -d target.com -b google",
+			"root@kali:~# sherlock Rangappa",
+			"root@kali:~# subfinder -d target.corp.com | httpx -silent",
+			"root@kali:~# bettercap -X -T 192.168.1.1",
+			"root@kali:~# responder -I eth0 -wrf",
+			"root@kali:~# proxychains nmap -sT -Pn 192.168.1.1",   
+			"root@kali:~# binwalk firmware.bin",
+			"root@kali:~# ghidra",  
+			"root@kali:~# enum4linux -a 192.168.1.50",
+			"root@kali:~# searchsploit apache 2.4.6"
+		]
 	};
 
-	const getCurrentLogLines = () => {
-		return themeLogLines[theme] || themeLogLines.blue; // fallback to blue if theme not found
+	const getCurrentLogLines = (): string[] => {
+		return themeLogLines[theme as ThemeType] || themeLogLines.blue;
 	};
 
-	const getLogColor = (logText: string, currentTheme: string) => {
+	const getLogColor = (logText: string, currentTheme: string): string => {
 		// Red theme - all logs in green (hacker terminal style)
 		if (currentTheme === 'red') {
 			return "#22c55e"; // green-500 - classic hacker green
@@ -144,65 +148,65 @@ const HeroSection = () => {
 		}
 		
 		// Fallback to theme accent color
-		return getComputedStyle(document.documentElement).getPropertyValue('--theme-accent').trim() || "#60a5fa";
+		const rootStyles = getComputedStyle(document.documentElement);
+		return rootStyles.getPropertyValue('--theme-accent').trim() || "#60a5fa";
 	};
 
 	const createLogLines = () => {
-    const currentLogLines = getCurrentLogLines();
-    const lanes = 12; // Increase lanes for better distribution
-    
-    // Get currently active lanes to avoid collision
-    const activeLanes = new Set(animateddLogs.map(log => log.lane));
-    
-    // Create fewer logs at once to prevent crowding
-    const newLogsCount = 2; // Reduced from 3-4 to 2
-    const newLogs = [];
-    
-    for (let i = 0; i < newLogsCount; i++) {
-        const randomLog = currentLogLines[Math.floor(Math.random() * currentLogLines.length)];
-        
-        // Find an available lane more effectively
-        let lane: number;
-        let attempts = 0;
-        do {
-            lane = Math.floor(Math.random() * lanes);
-            attempts++;
-        } while (activeLanes.has(lane) && attempts < 50); // Increased attempts
-        
-        // If we can't find a free lane, use a random one with offset
-        if (attempts >= 50) {
-            lane = Math.floor(Math.random() * lanes);
-        }
-        
-        activeLanes.add(lane); // Mark this lane as used
-        
-        // Better positioning with proper spacing
-        const laneWidth = 100 / lanes;
-        const leftPosition = (lane * laneWidth) + (Math.random() * laneWidth * 0.7);
-        const animationDuration = 20 + Math.random() * 15; // 20-35 seconds
-        
-        newLogs.push({
-            id: Date.now() + i + Math.random() * 1000, // More unique IDs
-            text: randomLog,
-            left: `${Math.min(leftPosition, 85)}%`,
-            animationDuration: `${animationDuration}s`,
-            animationDelay: `${i * 1.5}s`, // Longer delay between logs
-            color: getLogColor(randomLog, theme),
-            lane: lane,
-            createdAt: Date.now()
-        });
-    }
-    
-    setAnimateddLogs(prevLogs => {
-        const currentTime = Date.now();
-        // Remove logs older than 60 seconds
-        const filteredLogs = prevLogs.filter(log => 
-            currentTime - (log.createdAt || 0) < 60000
-        );
-        return [...filteredLogs, ...newLogs];
-    });
-};
-
+		const currentLogLines = getCurrentLogLines();
+		const lanes = 12; // Increase lanes for better distribution
+		
+		// Get currently active lanes to avoid collision
+		const activeLanes = new Set(animateddLogs.map(log => log.lane));
+		
+		// Create fewer logs at once to prevent crowding
+		const newLogsCount = 2; // Reduced from 3-4 to 2
+		const newLogs: AnimatedLog[] = [];
+		
+		for (let i = 0; i < newLogsCount; i++) {
+			const randomLog = currentLogLines[Math.floor(Math.random() * currentLogLines.length)];
+			
+			// Find an available lane more effectively
+			let lane: number;
+			let attempts = 0;
+			do {
+				lane = Math.floor(Math.random() * lanes);
+				attempts++;
+			} while (activeLanes.has(lane) && attempts < 50); // Increased attempts
+			
+			// If we can't find a free lane, use a random one with offset
+			if (attempts >= 50) {
+				lane = Math.floor(Math.random() * lanes);
+			}
+			
+			activeLanes.add(lane); // Mark this lane as used
+			
+			// Better positioning with proper spacing
+			const laneWidth = 100 / lanes;
+			const leftPosition = (lane * laneWidth) + (Math.random() * laneWidth * 0.7);
+			const animationDuration = 20 + Math.random() * 15; // 20-35 seconds
+			
+			newLogs.push({
+				id: Date.now() + i + Math.random() * 1000, // More unique IDs
+				text: randomLog,
+				left: `${Math.min(leftPosition, 85)}%`,
+				animationDuration: `${animationDuration}s`,
+				animationDelay: `${i * 1.5}s`, // Longer delay between logs
+				color: getLogColor(randomLog, theme),
+				lane: lane,
+				createdAt: Date.now()
+			});
+		}
+		
+		setAnimateddLogs(prevLogs => {
+			const currentTime = Date.now();
+			// Remove logs older than 60 seconds
+			const filteredLogs = prevLogs.filter(log => 
+				currentTime - (log.createdAt || 0) < 60000
+			);
+			return [...filteredLogs, ...newLogs];
+		});
+	};
 
 	// Initialize and update log lines
 	useEffect(() => {
@@ -213,7 +217,7 @@ const HeroSection = () => {
 		createLogLines();
 		
 		// Create logs more frequently for continuous stream
-		const interval = setInterval(createLogLines, 3000); // Every 4 seconds instead of 20
+		const interval = setInterval(createLogLines, 3000); // Every 3 seconds
 		return () => clearInterval(interval);
 	}, [theme]);
 
@@ -281,6 +285,87 @@ const HeroSection = () => {
 		setIsVisible(true);
 	}, []);
 
+	const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		const target = e.currentTarget as HTMLAnchorElement;
+		if (target.dataset.variant === 'primary') {
+			target.style.backgroundColor = 'var(--theme-primary-dark)';
+			target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
+		} else if (target.dataset.variant === 'secondary') {
+			target.style.backgroundColor = 'var(--theme-primary)';
+			target.style.color = 'white';
+		}
+	};
+
+	const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		const target = e.currentTarget as HTMLAnchorElement;
+		if (target.dataset.variant === 'primary') {
+			target.style.backgroundColor = 'var(--theme-primary)';
+			target.style.boxShadow = '0 4px 20px var(--theme-glow)';
+		} else if (target.dataset.variant === 'secondary') {
+			target.style.backgroundColor = 'transparent';
+			target.style.color = 'var(--theme-accent)';
+		}
+	};
+
+	const renderColoredTerminalText = (text: string): React.ReactNode => {
+		if (theme !== 'red') {
+			return text;
+		}
+
+		// Kali Linux terminal coloring
+		if (text.startsWith('root@kali:~#')) {
+			return (
+				<>
+					<span style={{ color: '#ff6b6b' }}>root</span>
+					<span style={{ color: '#ffffff' }}>@</span>
+					<span style={{ color: '#4ecdc4' }}>kali</span>
+					<span style={{ color: '#ffffff' }}>:</span>
+					<span style={{ color: '#ffe66d' }}>~</span>
+					<span style={{ color: '#00ff41' }}># </span>
+					<span style={{ color: '#ffffff' }}>
+						{text.replace('root@kali:~# ', '')}
+					</span>
+				</>
+			);
+		} else if (text.startsWith('msf6 >')) {
+			return (
+				<>
+					<span style={{ color: '#ff6b6b' }}>msf6</span>
+					<span style={{ color: '#00ff41' }}> > </span>
+					<span style={{ color: '#ffffff' }}>
+						{text.replace('msf6 > ', '')}
+					</span>
+				</>
+			);
+		} else if (text.startsWith('msf6 exploit')) {
+			const exploitMatch = text.split('exploit(')[1]?.split(')')[0] || '';
+			const command = text.split('> ')[1] || '';
+			return (
+				<>
+					<span style={{ color: '#ff6b6b' }}>msf6</span>
+					<span style={{ color: '#ffffff' }}> </span>
+					<span style={{ color: '#f59e0b' }}>exploit</span>
+					<span style={{ color: '#00ff41' }}>(</span>
+					<span style={{ color: '#4ecdc4' }}>{exploitMatch}</span>
+					<span style={{ color: '#00ff41' }}>) > </span>
+					<span style={{ color: '#ffffff' }}>{command}</span>
+				</>
+			);
+		} else if (text.startsWith('meterpreter >')) {
+			return (
+				<>
+					<span style={{ color: '#ff6b6b' }}>meterpreter</span>
+					<span style={{ color: '#00ff41' }}> > </span>
+					<span style={{ color: '#ffffff' }}>
+						{text.replace('meterpreter > ', '')}
+					</span>
+				</>
+			);
+		} else {
+			return <span style={{ color: '#00ff41' }}>{text}</span>;
+		}
+	};
+
 	return (
 		<section
 			id="home"
@@ -289,83 +374,32 @@ const HeroSection = () => {
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute inset-0 bg-black/30"></div>
 				{animateddLogs.map((log) => (
-    <div
-        key={log.id}
-        className="absolute top-0 font-mono text-xs opacity-20 whitespace-nowrap animate-terminal-scroll"
-        style={{
-            left: log.left,
-            animationDuration: log.animationDuration,
-            animationDelay: log.animationDelay,
-            color: log.color,
-            transform: 'translateY(-100%)',
-            zIndex: Math.floor(Math.random() * 10) + 1, // Random z-index to prevent same-level stacking
-            maxWidth: '500px', // Increased from 400px
-            minWidth: '300px', // Add minimum width
-            overflow: 'visible', // Changed from 'hidden' to 'visible'
-            textOverflow: 'clip', // Changed from 'ellipsis'
-            fontSize: '11px', // Slightly smaller font
-            lineHeight: '1.2',
-            paddingRight: '20px' // Add some padding to prevent cutoff
-        }}
-    >
-        {theme === 'red' ? (
-    // Kali Linux terminal coloring
-    <span>
-        {log.text.startsWith('root@kali:~#') ? (
-            <>
-                <span style={{ color: '#ff6b6b' }}>root</span>
-                <span style={{ color: '#ffffff' }}>@</span>
-                <span style={{ color: '#4ecdc4' }}>kali</span>
-                <span style={{ color: '#ffffff' }}>:</span>
-                <span style={{ color: '#ffe66d' }}>~</span>
-                <span style={{ color: '#00ff41' }}># </span>
-                <span style={{ color: '#ffffff' }}>
-                    {log.text.replace('root@kali:~# ', '')}
-                </span>
-            </>
-        ) : log.text.startsWith('msf6 >') ? (
-            <>
-                <span style={{ color: '#ff6b6b' }}>msf6</span>
-                <span style={{ color: '#00ff41' }}> > </span>
-                <span style={{ color: '#ffffff' }}>
-                    {log.text.replace('msf6 > ', '')}
-                </span>
-            </>
-        ) : log.text.startsWith('msf6 exploit') ? (
-            <>
-                <span style={{ color: '#ff6b6b' }}>msf6</span>
-                <span style={{ color: '#ffffff' }}> </span>
-                <span style={{ color: '#f59e0b' }}>exploit</span>
-                <span style={{ color: '#00ff41' }}>(</span>
-                <span style={{ color: '#4ecdc4' }}>
-                    {log.text.split('exploit(')[1]?.split(')')[0] || ''}
-                </span>
-                <span style={{ color: '#00ff41' }}>) > </span>
-                <span style={{ color: '#ffffff' }}>
-                    {log.text.split('> ')[1] || ''}
-                </span>
-            </>
-        ) : log.text.startsWith('meterpreter >') ? (
-            <>
-                <span style={{ color: '#ff6b6b' }}>meterpreter</span>
-                <span style={{ color: '#00ff41' }}> > </span>
-                <span style={{ color: '#ffffff' }}>
-                    {log.text.replace('meterpreter > ', '')}
-                </span>
-            </>
-        ) : (
-            <span style={{ color: '#00ff41' }}>{log.text}</span>
-        )}
-    </span>
-) : (
-    // Original format for blue theme
-    <span style={{ color: log.color }}>{log.text}</span>
-)}
-
-    </div>
-))}
-
+					<div
+						key={log.id}
+						className="absolute top-0 font-mono text-xs opacity-20 whitespace-nowrap animate-terminal-scroll"
+						style={{
+							left: log.left,
+							animationDuration: log.animationDuration,
+							animationDelay: log.animationDelay,
+							color: log.color,
+							transform: 'translateY(-100%)',
+							zIndex: Math.floor(Math.random() * 10) + 1,
+							maxWidth: '500px',
+							minWidth: '300px',
+							overflow: 'visible',
+							textOverflow: 'clip',
+							fontSize: '11px',
+							lineHeight: '1.2',
+							paddingRight: '20px'
+						}}
+					>
+						{theme === 'red' ? renderColoredTerminalText(log.text) : (
+							<span style={{ color: log.color }}>{log.text}</span>
+						)}
+					</div>
+				))}
 			</div>
+			
 			<div className="relative z-10 lg:container mx-auto">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 					<div className="flex-1 text-center lg:text-left max-w-2xl">
@@ -410,19 +444,14 @@ const HeroSection = () => {
 						<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
 							<a
 								href="#projects-section"
+								data-variant="primary"
 								className="inline-flex items-center gap-3 px-5 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
 								style={{
 									backgroundColor: 'var(--theme-primary)',
 									boxShadow: '0 4px 20px var(--theme-glow)'
 								}}
-								onMouseEnter={(e) => {
-									e.target.style.backgroundColor = 'var(--theme-primary-dark)';
-									e.target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
-								}}
-								onMouseLeave={(e) => {
-									e.target.style.backgroundColor = 'var(--theme-primary)';
-									e.target.style.boxShadow = '0 4px 20px var(--theme-glow)';
-								}}
+								onMouseEnter={handleMouseEnter}
+								onMouseLeave={handleMouseLeave}
 							>
 								<Shield className="w-5 h-5 group-hover:rotate-12 transition-transform" />
 								Explore My Work
@@ -430,19 +459,14 @@ const HeroSection = () => {
 
 							<a
 								href="#contact-section"
+								data-variant="secondary"
 								className="inline-flex items-center gap-3 px-8 py-4 border-2 hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 group"
 								style={{
 									borderColor: 'var(--theme-primary)',
 									color: 'var(--theme-accent)'
 								}}
-								onMouseEnter={(e) => {
-									e.target.style.backgroundColor = 'var(--theme-primary)';
-									e.target.style.color = 'white';
-								}}
-								onMouseLeave={(e) => {
-									e.target.style.backgroundColor = 'transparent';
-									e.target.style.color = 'var(--theme-accent)';
-								}}
+								onMouseEnter={handleMouseEnter}
+								onMouseLeave={handleMouseLeave}
 							>
 								<Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
 								Contact Me
@@ -451,20 +475,15 @@ const HeroSection = () => {
 							<a
 								href="Assets/Sudarshan-Rangappa_resume.pdf"
 								download
+								data-variant="primary"
 								className="inline-flex items-center gap-3 px-8 py-4 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
 								aria-label="Download Sudarshan Rangappa's Resume"
 								style={{
 									backgroundColor: 'var(--theme-primary)',
 									boxShadow: '0 4px 20px var(--theme-glow)'
 								}}
-								onMouseEnter={(e) => {
-									e.target.style.backgroundColor = 'var(--theme-primary-dark)';
-									e.target.style.boxShadow = '0 8px 30px var(--theme-shadow)';
-								}}
-								onMouseLeave={(e) => {
-									e.target.style.backgroundColor = 'var(--theme-primary)';
-									e.target.style.boxShadow = '0 4px 20px var(--theme-glow)';
-								}}
+								onMouseEnter={handleMouseEnter}
+								onMouseLeave={handleMouseLeave}
 							>
 								<Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
 								Download Resume
@@ -523,82 +542,85 @@ const HeroSection = () => {
 								}}
 							></div>
 							<div className="relative aspect-[320/320] w-80 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-black/20">
-								<img src={"https://i.postimg.cc/9frSnHjk/Chat-GPT-Image-Jun-24-2025-08-35-26-PM.png"} className="w-full h-full object-cover" />
+								<img 
+									src={"https://i.postimg.cc/9frSnHjk/Chat-GPT-Image-Jun-24-2025-08-35-26-PM.png"} 
+									alt="Sudarshan Rangappa profile"
+									className="w-full h-full object-cover" 
+								/>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 			<style jsx>{`
-    @keyframes terminal-scroll {
-        0% {
-            transform: translateY(-50px); // Start slightly above viewport
-            opacity: 0;
-        }
-        5% {
-            opacity: 0.15;
-        }
-        10% {
-            opacity: 0.2;
-        }
-        85% {
-            opacity: 0.2;
-        }
-        95% {
-            opacity: 0.1;
-        }
-        100% {
-            transform: translateY(calc(100vh + 50px)); // End slightly below viewport
-            opacity: 0;
-        }
-    }
-    
-    .animate-terminal-scroll {
-        animation: terminal-scroll linear infinite;
-        will-change: transform, opacity; // Optimize for animation
-    }
-`}</style>
+				@keyframes terminal-scroll {
+					0% {
+						transform: translateY(-50px);
+						opacity: 0;
+					}
+					5% {
+						opacity: 0.15;
+					}
+					10% {
+						opacity: 0.2;
+					}
+					85% {
+						opacity: 0.2;
+					}
+					95% {
+						opacity: 0.1;
+					}
+					100% {
+						transform: translateY(calc(100vh + 50px));
+						opacity: 0;
+					}
+				}
+				
+				.animate-terminal-scroll {
+					animation: terminal-scroll linear infinite;
+					will-change: transform, opacity;
+				}
 
-		<style jsx>{`
-		@keyframes breathe {
-			0%, 100% { 
-				transform: scale(1);
-				box-shadow: 0 4px 15px var(--theme-glow);
-			}
-			50% { 
-				transform: scale(1.02);
-				box-shadow: 0 8px 25px var(--theme-shadow);
-			}
-		}
-		
-		@keyframes shimmer {
-			0% { transform: translateX(-100%); }
-			100% { transform: translateX(100%); }
-		}
-		
-		@keyframes borderPulse {
-			0%, 100% { 
-				opacity: 0.3;
-				transform: scale(1);
-			}
-			50% { 
-				opacity: 0.8;
-				transform: scale(1.05);
-			}
-		}
-		
-		@keyframes bounce {
-			0%, 20%, 53%, 80%, 100% {
-				transform: translateY(0) rotate(0deg);
-			}
-			40%, 43% {
-				transform: translateY(-8px) rotate(5deg);
-			}
-			70% {
-				transform: translateY(-4px) rotate(-2deg);
-			}
-		}
-	`}</style>
+				@keyframes breathe {
+					0%, 100% { 
+						transform: scale(1);
+						box-shadow: 0 4px 15px var(--theme-glow);
+					}
+					50% { 
+						transform: scale(1.02);
+						box-shadow: 0 8px 25px var(--theme-shadow);
+					}
+				}
+				
+				@keyframes shimmer {
+					0% { transform: translateX(-100%); }
+					100% { transform: translateX(100%); }
+				}
+				
+				@keyframes borderPulse {
+					0%, 100% { 
+						opacity: 0.3;
+						transform: scale(1);
+					}
+					50% { 
+						opacity: 0.8;
+						transform: scale(1.05);
+					}
+				}
+				
+				@keyframes bounce {
+					0%, 20%, 53%, 80%, 100% {
+						transform: translateY(0) rotate(0deg);
+					}
+					40%, 43% {
+						transform: translateY(-8px) rotate(5deg);
+					}
+					70% {
+						transform: translateY(-4px) rotate(-2deg);
+					}
+				}
+			`}</style>
 		</section>
 	);
 };
