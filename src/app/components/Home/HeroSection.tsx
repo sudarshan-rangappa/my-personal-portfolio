@@ -331,7 +331,7 @@ const HeroSection = () => {
 			return (
 				<>
 					<span style={{ color: '#ff6b6b' }}>msf6</span>
-					<span style={{ color: '#00ff41' }}> > </span>
+					<span style={{ color: '#00ff41' }}> {'>'} </span>
 					<span style={{ color: '#ffffff' }}>
 						{text.replace('msf6 > ', '')}
 					</span>
@@ -347,7 +347,7 @@ const HeroSection = () => {
 					<span style={{ color: '#f59e0b' }}>exploit</span>
 					<span style={{ color: '#00ff41' }}>(</span>
 					<span style={{ color: '#4ecdc4' }}>{exploitMatch}</span>
-					<span style={{ color: '#00ff41' }}>) > </span>
+					<span style={{ color: '#00ff41' }}>{')'}) {'>'} </span>
 					<span style={{ color: '#ffffff' }}>{command}</span>
 				</>
 			);
@@ -355,7 +355,7 @@ const HeroSection = () => {
 			return (
 				<>
 					<span style={{ color: '#ff6b6b' }}>meterpreter</span>
-					<span style={{ color: '#00ff41' }}> > </span>
+					<span style={{ color: '#00ff41' }}> {'>'} </span>
 					<span style={{ color: '#ffffff' }}>
 						{text.replace('meterpreter > ', '')}
 					</span>
@@ -416,7 +416,7 @@ const HeroSection = () => {
 								parentClassName={"text-5xl lg:text-7xl font-bold text-white leading-tight"}
 								text={"Sudarshan"}
 								speed={200}
-								sequential={"true"}
+								sequential={true}
 								animateOn={"view"}
 							/>
 						</div>
@@ -427,7 +427,7 @@ const HeroSection = () => {
 								parentClassName={"text-4xl lg:text-6xl leading-[1.2]"}
 								text={"Rangappa"}
 								speed={200}
-								sequential={"true"}
+								sequential={true}
 								animateOn={"view"}
 								style={{ color: 'var(--theme-accent)' }}
 							/>
