@@ -1,4 +1,4 @@
-![sudarshan](https://github.com/user-attachments/assets/af55f421-8b4f-428a-80e6-546b3a10a527)# 🚀 Sudarshan Rangappa — Cybersecurity Portfolio
+# 🚀 Sudarshan Rangappa — Cybersecurity Portfolio
 
 [![Live Website](https://img.shields.io/badge/Live-sudarshanrangappa.in.net-blue?style=for-the-badge)](https://www.sudarshanrangappa.in.net)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
@@ -16,8 +16,7 @@
 - 🔴 **Red Team Mode**: Showcasing offensive tactics, pentesting, and recon tools
 - ⚡ Real-time theme switching with contextual changes across the site
 <img width="1894" height="1079" alt="image" src="https://github.com/user-attachments/assets/dabdb983-d8c1-4682-a416-9a516d0ad5a1" />
-![sudarshan](https://github.com/user-attachments/assets/6fdb6ef5-cf7e-4f2f-a2fd-fc42b4d5be69)
-
+![sudarshan](https://github.com/user-attachments/assets/6fdb6ef5-cf7e-4f2f-a2fd-fc42b4d5be69) | ![sudarshan](https://github.com/user-attachments/assets/af55f421-8b4f-428a-80e6-546b3a10a527)
 ### 🎬 Interactive UX
 - Custom decrypt-style intro animation
 - Simulated terminal streams & cyber-themed transitions
