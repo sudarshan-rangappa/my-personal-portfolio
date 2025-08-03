@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://www.sudarshanrangappa.in.net'),
     title: "sudo ./portfolio",
     description: "Explore Sudarshan Rangappa’s live portfolio showcasing responsive web design, Red & Blue Team demos, and penetration testing tools. —open to feedback and collaboration.",
     openGraph: {

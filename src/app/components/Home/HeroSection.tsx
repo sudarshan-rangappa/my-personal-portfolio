@@ -591,7 +591,7 @@ const HeroSection = () => {
                             ></div>
                             <div className="relative aspect-[320/320] w-80 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-black/20">
                                 <img 
-                                    src={"https://i.postimg.cc/9frSnHjk/Chat-GPT-Image-Jun-24-2025-08-35-26-PM.png"} 
+                                    src={"/Sudarshan.png"} 
                                     alt="Sudarshan Rangappa profile"
                                     className="w-full h-full object-cover" 
                                 />
