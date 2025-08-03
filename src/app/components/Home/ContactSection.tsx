@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 // If SVGs are in a /icons folder, update the paths accordingly
 const GITHUB_ICON = "/github.svg";
 const LINKEDIN_ICON = "/linkedin.svg";
-const EMAIL_ICON = "/Email.svg";
+const EMAIL_ICON = "/email.svg";
 
 const theme = {
   primary: "var(--theme-primary, #dc2626)",
